@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tantauco Ventures — Cómo funciona un fondo de VC</title>
+<style>
+:root{
+  --bg:#f7f8f4;
+  --paper:#ffffff;
+  --ink:#0f2f2b;
+  --muted:#687470;
+  --line:#dbe2dd;
+  --green:#0f4b43;
+  --green2:#1d6a5f;
+  --lime:#d6ef4b;
+  --sand:#eff2eb;
+  --orange:#ef9d6b;
+  --shadow:0 18px 45px rgba(15,47,43,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.45;
+}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--lime);width:0;z-index:1000}
+.shell{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+aside{
+  position:sticky;top:0;height:100vh;padding:32px 22px 24px;
+  border-right:1px solid var(--line);background:rgba(247,248,244,.96);
+  backdrop-filter:blur(10px);z-index:20;
+}
+.brand{font-weight:800;letter-spacing:.08em;font-size:14px}
+.brand small{display:block;font-weight:500;letter-spacing:0;margin-top:4px;color:var(--muted)}
+nav{margin-top:30px;display:flex;flex-direction:column;gap:6px}
+nav a{
+  color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;
+  font-size:13px;border:1px solid transparent;
+}
+nav a:hover,nav a.active{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.legend{position:absolute;bottom:22px;left:22px;right:22px;font-size:11px;color:var(--muted)}
+.legend kbd{font-family:inherit;border:1px solid var(--line);background:var(--paper);padding:2px 5px;border-radius:5px}
+main{min-width:0}
+section{
+  min-height:88vh;padding:80px clamp(28px,6vw,86px);display:flex;align-items:center;
+  border-bottom:1px solid var(--line);position:relative;
+}
+section.compact{min-height:70vh}
+.wrap{width:min(1180px,100%);margin:0 auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:800;color:var(--green2);margin-bottom:14px}
+h1{font-size:clamp(44px,7vw,88px);line-height:.95;margin:0;max-width:980px;letter-spacing:-.045em}
+h2{font-size:clamp(36px,5vw,66px);line-height:1.02;margin:0 0 20px;letter-spacing:-.035em}
+h3{font-size:22px;margin:0 0 8px}
+.lead{font-size:clamp(18px,2vw,26px);max-width:850px;color:#35504b;margin:0 0 34px}
+.meta{margin-top:26px;font-size:13px;color:var(--muted)}
+.grid{display:grid;gap:16px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;box-shadow:0 1px 0 rgba(0,0,0,.02);
+}
+.card.dark{background:var(--green);color:white;border-color:var(--green)}
+.card.accent{border-top:5px solid var(--lime)}
+.card.orange{border-top:5px solid var(--orange)}
+.card .big{font-size:38px;font-weight:800;letter-spacing:-.04em}
+.card p{margin:8px 0 0;color:inherit}
+.muted{color:var(--muted)}
+.dark .muted{color:#c7d3cf}
+.flow{
+  display:grid;grid-template-columns:repeat(7,minmax(90px,1fr));gap:10px;align-items:center;margin-top:32px
+}
+.node{padding:18px 12px;background:var(--paper);border:1px solid var(--line);border-radius:14px;text-align:center;font-weight:700}
+.arrow{text-align:center;color:var(--green2);font-size:26px}
+.fullbleed{
+  width:100%;padding:32px;border-radius:24px;background:var(--green);color:white;box-shadow:var(--shadow)
+}
+.fullbleed .lead{color:#dce8e4}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:var(--sand);font-size:12px;font-weight:700}
+.dark .tag{background:rgba(255,255,255,.12)}
+.metric{padding:18px 0;border-top:1px solid var(--line)}
+.metric:first-child{border-top:0}
+.metric .num{font-size:34px;font-weight:800}
+.metric .label{font-size:13px;color:var(--muted)}
+.dark .metric{border-color:rgba(255,255,255,.16)}
+.dark .metric .label{color:#c7d3cf}
+.expandable{cursor:pointer;position:relative;transition:.2s ease}
+.expandable:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.expand-hint{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);margin-top:18px}
+.detail{
+  display:none;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);
+  font-size:14px;color:#3f5550
+}
+.expandable.open .detail{display:block}
+.expandable.open .expand-hint::after{content:" · abierto";color:var(--green2)}
+.note{
+  display:none;margin-top:22px;background:#fff7d9;border:1px solid #eadb9e;padding:16px 18px;border-radius:12px;
+  color:#5a4b1a;font-size:13px
+}
+body.show-notes .note{display:block}
+.callout{font-size:30px;line-height:1.2;font-weight:750;max-width:900px;margin:30px 0}
+.small{font-size:12px}
+.source{font-size:11px;color:var(--muted);margin-top:14px}
+.chart{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.bars{display:flex;align-items:flex-end;gap:14px;height:220px;padding:12px 4px 0}
+.bargrp{flex:1;display:flex;gap:5px;align-items:flex-end;height:100%;position:relative}
+.bar{flex:1;background:var(--green2);border-radius:7px 7px 0 0;min-width:10px;position:relative}
+.bar:nth-child(2){background:#6d8d86}.bar:nth-child(3){background:#a3b8b2}.bar:nth-child(4){background:#d5dfdb}
+.bar span{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800}
+.grp-label{position:absolute;bottom:-28px;width:100%;text-align:center;font-size:11px;color:var(--muted)}
+.quartiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:22px 0}
+.q{padding:24px 14px;border-radius:14px;background:var(--sand);text-align:center}
+.q.q1{background:var(--green);color:white;box-shadow:inset 0 -5px 0 var(--lime)}
+.q strong{display:block;font-size:28px}
+.portfolio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.company{padding:22px;border:1px solid var(--line);background:var(--paper);border-radius:16px}
+.company h3{font-size:28px}
+.company .stage{font-size:11px;color:var(--green2);text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.company .valuation{font-size:26px;font-weight:800;margin-top:16px}
+.footerq{font-size:clamp(42px,6vw,78px);line-height:1;letter-spacing:-.04em}
+.top-tools{
+  position:fixed;right:18px;top:18px;display:flex;gap:8px;z-index:100;
+}
+.tool{
+  border:1px solid var(--line);background:rgba(255,255,255,.92);padding:8px 10px;border-radius:10px;
+  font-size:11px;color:var(--muted);cursor:pointer
+}
+.tool:hover{color:var(--ink)}
+@media(max-width:980px){
+  .shell{grid-template-columns:1fr}
+  aside{display:none}
+  section{padding:64px 24px;min-height:auto}
+  .grid.two,.grid.three,.grid.four,.portfolio{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg)}
+  .quartiles{grid-template-columns:1fr 1fr}
+}
+@media print{
+  aside,.top-tools,#progress{display:none}
+  section{min-height:auto;page-break-after:always;padding:36px}
+  .detail,.note{display:block!important}
+  .shell{display:block}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div class="top-tools">
+  <button class="tool" id="notesBtn">N · notas</button>
+  <button class="tool" id="expandBtn">expandir todo</button>
+  <button class="tool" onclick="window.print()">PDF</button>
+</div>
+
+<div class="shell">
+<aside>
+  <div class="brand">TANTAUCO VENTURES<small>Diplomado Venture Capital UC · 2026</small></div>
+  <nav>
+    <a href="#s0">Inicio</a>
+    <a href="#s1">1. El circuito</a>
+    <a href="#s2">2. Fundraising</a>
+    <a href="#s3">3. Economics</a>
+    <a href="#s4">4. Power law</a>
+    <a href="#s5">5. Tesis</a>
+    <a href="#s6">6. Selección</a>
+    <a href="#s7">7. Market research</a>
+    <a href="#s8">8. Post-inversión</a>
+    <a href="#s9">9. Portafolio</a>
+    <a href="#s10">10. Reporting</a>
+    <a href="#s11">11. Performance</a>
+    <a href="#s12">12. LatAm</a>
+    <a href="#s13">Cierre</a>
+  </nav>
+  <div class="legend">Doble click sobre una tarjeta para profundizar.<br><br><kbd>N</kbd> muestra notas del expositor.</div>
+</aside>
+
+<main>
+<section id="s0">
+  <div class="wrap">
+    <div class="eyebrow">Diplomado Venture Capital UC · Unidad 2</div>
+    <h1>Cómo funciona realmente un fondo de Venture Capital</h1>
+    <p class="lead" style="margin-top:28px">Tantauco como caso para entender la lógica económica, los incentivos, la selección de inversiones, la relación con LPs y la operación de un fondo.</p>
+    <div class="grid three" style="margin-top:40px">
+      <div class="card"><span class="tag">PERSPECTIVA</span><h3 style="margin-top:14px">LP</h3><p class="muted">¿Por qué confiar capital a un gestor por 10+ años?</p></div>
+      <div class="card"><span class="tag">PERSPECTIVA</span><h3 style="margin-top:14px">GP</h3><p class="muted">¿Cómo se transforma una tesis en un portafolio?</p></div>
+      <div class="card"><span class="tag">PERSPECTIVA</span><h3 style="margin-top:14px">Founder</h3><p class="muted">¿Qué recibe una startup además del capital?</p></div>
+    </div>
+    <div class="note"><strong>Timing sugerido: 1–2 min.</strong> Enmarcar la clase como “usar un caso real para recorrer la máquina completa”. No vender Tantauco todavía.</div>
+  </div>
+</section>
+
+<section id="s1">
+  <div class="wrap">
+    <div class="eyebrow">01 · La máquina</div>
+    <h2>El circuito del capital</h2>
+    <p class="lead">Un fondo existe para transformar capital ilíquido y de largo plazo en un portafolio de apuestas con potencial de retornos extraordinarios.</p>
+    <div class="flow">
+      <div class="node">LPs<br><span class="muted small">commitment</span></div>
+      <div class="arrow">→</div>
+      <div class="node">Fondo<br><span class="muted small">vehículo</span></div>
+      <div class="arrow">→</div>
+      <div class="node">GP<br><span class="muted small">decide / gestiona</span></div>
+      <div class="arrow">→</div>
+      <div class="node">Startups<br><span class="muted small">portafolio</span></div>
+    </div>
+    <div class="flow" style="grid-template-columns:repeat(5,minmax(90px,1fr));margin-top:10px">
+      <div class="node">Crecimiento</div><div class="arrow">→</div><div class="node">Exits / liquidez</div><div class="arrow">→</div><div class="node">Distribuciones a LPs</div>
+    </div>
+    <div class="grid three" style="margin-top:28px">
+      <div class="card expandable"><h3>LP</h3><p>Limited Partner. Aporta capital, pero no selecciona cada startup.</p><div class="expand-hint">doble click · profundizar</div><div class="detail">Puede ser una persona de alto patrimonio, family office, corporativo, endowment, fondo de pensiones u otro inversionista institucional. La mezcla depende del fondo y de su etapa de desarrollo.</div></div>
+      <div class="card expandable"><h3>GP</h3><p>General Partner. Levanta el fondo, define la estrategia y toma las decisiones de inversión.</p><div class="expand-hint">doble click · profundizar</div><div class="detail">El GP opera a través de una gestora/management company, organiza el equipo y responde frente a los LPs por la ejecución del mandato.</div></div>
+      <div class="card expandable"><h3>Commitment ≠ cash hoy</h3><p>El LP compromete capital y el GP lo va llamando a medida que se necesita.</p><div class="expand-hint">doble click · profundizar</div><div class="detail">Los capital calls permiten que el LP no entregue todo el dinero el día 1. La cadencia depende del ritmo de inversión, gastos y follow-ons.</div></div>
+    </div>
+    <div class="note"><strong>Timing: 4 min.</strong> Este es el mapa mental al que volverás toda la clase.</div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="wrap">
+    <div class="eyebrow">02 · LPs y fundraising</div>
+    <h2>Antes de invertir, el GP también tiene que vender</h2>
+    <p class="lead">Fundraising en un fondo emergente es, sobre todo, un proceso de construir confianza antes de pedir un compromiso de capital.</p>
+
+    <div class="fullbleed">
+      <div class="grid four">
+        <div class="metric"><div class="num">01</div><div class="label">Relaciones personales y reputación</div></div>
+        <div class="metric"><div class="num">02</div><div class="label">Ecosistema: founders, VCs, viajes, Tech Weeks</div></div>
+        <div class="metric"><div class="num">03</div><div class="label">Acceso recurrente y señales de calidad</div></div>
+        <div class="metric"><div class="num">04</div><div class="label">Confianza → commitment</div></div>
+      </div>
+    </div>
+
+    <div class="callout">La misma red de confianza que ayuda a levantar capital después alimenta el sourcing, el follow-on y las conexiones comerciales.</div>
+
+    <div class="grid two">
+      <div class="card accent expandable">
+        <h3>¿Por qué HNWI aparecen tanto?</h3>
+        <p>Porque VC exige tolerar iliquidez, dispersión de resultados y horizontes largos.</p>
+        <div class="expand-hint">doble click · profundizar</div>
+        <div class="detail">En el caso de Tantauco, las relaciones y contactos con inversionistas de alto patrimonio han sido relevantes. No es una regla de la industria: también existen LPs institucionales.</div>
+      </div>
+      <div class="card expandable">
+        <h3>¿Qué pregunta un LP?</h3>
+        <p>¿Por qué ustedes? ¿Por qué ahora? ¿Cuál es la ventaja? ¿Cómo devuelven el fondo?</p>
+        <div class="expand-hint">doble click · profundizar</div>
+        <div class="detail">También evalúa track record, equipo, gobierno, disciplina de portfolio construction, acceso a oportunidades, conflictos, reporting y capacidad de sostener la estrategia durante varios ciclos.</div>
+      </div>
+    </div>
+    <div class="note"><strong>Timing: 5 min.</strong> Esta sección debe sentirse práctica: “así se levanta un fondo emergente”. Conectar Tech Weeks y viajes con confianza, no como marketing.</div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="wrap">
+    <div class="eyebrow">03 · Economics e incentivos</div>
+    <h2>El GP administra capital ajeno, pero tiene que estar económicamente alineado</h2>
+    <p class="lead">Ejemplo pedagógico. No representa los términos contractuales de Tantauco.</p>
+    <div class="grid four">
+      <div class="card accent"><div class="big">$25M</div><h3>Fondo ejemplo</h3><p class="muted">Capital comprometido por LPs.</p></div>
+      <div class="card expandable"><div class="big">Fee</div><h3>Management fee</h3><p class="muted">Financia al equipo y la operación.</p><div class="expand-hint">doble click</div><div class="detail">Se suele cobrar durante la vida del fondo con distintas bases/cadencias. No es equivalente a retorno del GP.</div></div>
+      <div class="card expandable"><div class="big">Carry</div><h3>Participación en upside</h3><p class="muted">El incentivo principal por generar retornos.</p><div class="expand-hint">doble click</div><div class="detail">El carry solo es económicamente atractivo si el fondo crea valor. La mecánica exacta depende del LPA y del waterfall.</div></div>
+      <div class="card expandable"><div class="big">GP$</div><h3>GP commitment</h3><p class="muted">El gestor también pone capital.</p><div class="expand-hint">doble click</div><div class="detail">Refuerza la alineación: el GP comparte la exposición económica del vehículo.</div></div>
+    </div>
+    <div class="grid two" style="margin-top:18px">
+      <div class="card dark expandable">
+        <h3>Gross</h3>
+        <p>Lo que genera el portafolio antes de fees/carry y otros efectos del fondo.</p>
+        <div class="expand-hint">doble click</div>
+        <div class="detail">Útil para evaluar selección de inversiones, pero no es lo que recibe el LP.</div>
+      </div>
+      <div class="card expandable">
+        <h3>Net</h3>
+        <p>Lo que efectivamente queda para el LP después de costos e incentivos.</p>
+        <div class="expand-hint">doble click</div>
+        <div class="detail">Por eso los benchmarks institucionales distinguen gross y net.</div>
+      </div>
+    </div>
+    <div class="callout">La pregunta económica real no es “¿ganamos dinero?”, sino “¿el retorno compensa 10+ años de iliquidez y riesgo?”</div>
+    <div class="note"><strong>Timing: 6 min.</strong> Mantenerlo sin matemáticas complejas. Javier dijo que hay abogados sin base financiera.</div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="wrap">
+    <div class="eyebrow">04 · Portfolio construction</div>
+    <h2>VC no funciona porque todas las compañías salen bien</h2>
+    <p class="lead">Funciona porque la distribución de outcomes puede ser extremadamente asimétrica.</p>
+
+    <div class="chart">
+      <h3>Portafolio hipotético · retorno por compañía</h3>
+      <div style="display:flex;align-items:flex-end;gap:12px;height:250px;margin-top:24px">
+        <div style="height:5%;flex:1;background:#d5dfdb;border-radius:6px 6px 0 0"></div>
+        <div style="height:5%;flex:1;background:#d5dfdb;border-radius:6px 6px 0 0"></div>
+        <div style="height:5%;flex:1;background:#d5dfdb;border-radius:6px 6px 0 0"></div>
+        <div style="height:8%;flex:1;background:#a3b8b2;border-radius:6px 6px 0 0"></div>
+        <div style="height:10%;flex:1;background:#a3b8b2;border-radius:6px 6px 0 0"></div>
+        <div style="height:12%;flex:1;background:#a3b8b2;border-radius:6px 6px 0 0"></div>
+        <div style="height:20%;flex:1;background:#6d8d86;border-radius:6px 6px 0 0"></div>
+        <div style="height:30%;flex:1;background:#6d8d86;border-radius:6px 6px 0 0"></div>
+        <div style="height:55%;flex:1;background:var(--green2);border-radius:6px 6px 0 0"></div>
+        <div style="height:100%;flex:1;background:var(--lime);border-radius:6px 6px 0 0;box-shadow:0 0 0 1px #bed130 inset"></div>
+      </div>
+      <div class="source">Ejemplo conceptual — no representa el portafolio de Tantauco.</div>
+    </div>
+
+    <div class="grid four" style="margin-top:18px">
+      <div class="card"><h3>Upside</h3><p class="muted">¿Puede el ganador ser suficientemente grande?</p></div>
+      <div class="card"><h3>Ownership</h3><p class="muted">¿Cuánta parte del outcome captura el fondo?</p></div>
+      <div class="card"><h3>Entry</h3><p class="muted">¿A qué valoración entramos?</p></div>
+      <div class="card"><h3>Dilution</h3><p class="muted">¿Qué pasa en rondas futuras?</p></div>
+    </div>
+    <div class="note"><strong>Timing: 5 min.</strong> Esta sección prepara la tesis: si necesitas outliers, no puedes invertir sin filtros.</div>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="wrap">
+    <div class="eyebrow">05 · Tesis</div>
+    <h2>La tesis no es un slogan. Es un sistema de restricciones</h2>
+    <p class="lead">Tantauco busca equipos excepcionales resolviendo problemas estructurales de LatAm, con modelos escalables y defendibles en un mundo marcado por IA.</p>
+
+    <div class="grid two">
+      <div class="card dark">
+        <span class="tag">TANTAUCO</span>
+        <h3 style="font-size:38px;margin-top:18px">Founder, first</h3>
+        <p class="muted">En early stage, las señales convencionales pueden aparecer tarde. El acceso temprano al equipo correcto puede ser la ventaja.</p>
+      </div>
+      <div class="card">
+        <h3>Pero “buen founder” no puede ser intuición pura</h3>
+        <p class="muted">El proceso debe convertir una hipótesis cualitativa en criterios observables y comparables.</p>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:18px">
+      <div class="card accent expandable">
+        <div class="big">01</div><h3>Personal</h3><p>Resilience · emotional regulation · intrinsic motivation.</p>
+        <div class="expand-hint">doble click</div>
+        <div class="detail">Ejemplo de pregunta: “Cuéntame un obstáculo mayor e inesperado. ¿Qué hiciste y qué aprendiste?”. Se busca evidencia conductual, no autodescripción.</div>
+      </div>
+      <div class="card accent expandable">
+        <div class="big">02</div><h3>Team</h3><p>Complementarity · trust · culture.</p>
+        <div class="expand-hint">doble click</div>
+        <div class="detail">Se examina cómo el equipo resuelve conflicto, distribuye fortalezas y alinea valores y mecanismos de decisión.</div>
+      </div>
+      <div class="card accent expandable">
+        <div class="big">03</div><h3>Market</h3><p>Founder-market fit.</p>
+        <div class="expand-hint">doble click</div>
+        <div class="detail">Experiencia previa, conocimiento técnico, relaciones estratégicas y una perspectiva no-obvia sobre el problema.</div>
+      </div>
+    </div>
+    <div class="source">Fuente: Tantauco Ventures — Corporate Deck; Founder Analysis Guide.</div>
+    <div class="note"><strong>Timing: 6 min.</strong> Aquí hay que explicar “por qué founder first” y luego demostrar que no es solo feeling.</div>
+  </div>
+</section>
+
+<section id="s6">
+  <div class="wrap">
+    <div class="eyebrow">06 · Selección</div>
+    <h2>La ventaja no está en ver startups. Está en decidir mejor</h2>
+    <p class="lead">El funnel mezcla acceso, proceso repetible, investigación y juicio de inversión.</p>
+
+    <div class="fullbleed">
+      <div class="flow" style="grid-template-columns:repeat(9,minmax(70px,1fr));margin:0">
+        <div class="node">Sourcing</div><div class="arrow">→</div>
+        <div class="node">Thesis fit</div><div class="arrow">→</div>
+        <div class="node">Screening</div><div class="arrow">→</div>
+        <div class="node">DD + IC</div><div class="arrow">→</div>
+        <div class="node">Investment</div>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:22px">
+      <div class="card expandable"><h3>Acceso</h3><p>VCs, founders, contactos personales, LPs, eventos, aceleradoras y señales de mercado.</p><div class="expand-hint">doble click</div><div class="detail">El análisis histórico de Tantauco muestra que las relaciones confiables pesan más a medida que el funnel se acerca a la decisión de inversión.</div></div>
+      <div class="card expandable"><h3>Proceso</h3><p>First call → screening semanal → pre-IC → DD → referencias → partners → IC.</p><div class="expand-hint">doble click</div><div class="detail">El investment memo se construye en paralelo y cada etapa deja preguntas explícitas por resolver antes de avanzar.</div></div>
+      <div class="card expandable"><h3>Gobierno</h3><p>No basta una persona convencida: hay mecanismos de revisión y aprobación.</p><div class="expand-hint">doble click</div><div class="detail">El proceso documentado contempla IC interno y externo antes de term sheet y legal due diligence.</div></div>
+    </div>
+    <div class="source">Fuente: Tantauco Ventures — Investment Process; Dealflow Analysis.</div>
+    <div class="note"><strong>Timing: 5 min.</strong> No mostrar cifras exactas del funnel salvo pregunta directa. El insight es “quality of access + rigor”.</div>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="wrap">
+    <div class="eyebrow">07 · Market research</div>
+    <h2>“Nuestro mercado es US$20B” no es todavía una tesis de inversión</h2>
+    <p class="lead">El trabajo del inversionista es desarmar la narrativa hasta llegar al mercado económicamente alcanzable.</p>
+
+    <div class="grid four">
+      <div class="card dark"><div class="big">TAM</div><p class="muted">Universo económico total.</p></div>
+      <div class="card"><div class="big">↓</div><h3>Filtros</h3><p class="muted">Geografía · cliente · comportamiento · regulación · infraestructura.</p></div>
+      <div class="card"><div class="big">SAM</div><p class="muted">Mercado realmente servible con el modelo actual.</p></div>
+      <div class="card accent"><div class="big">$</div><h3>Monetización</h3><p class="muted">¿Cuánto valor captura la empresa?</p></div>
+    </div>
+
+    <div class="callout">Una cifra de mercado no es evidencia. Una construcción trazable sí puede serlo.</div>
+    <div class="card expandable">
+      <h3>¿Qué se busca en diligence?</h3>
+      <p class="muted">Separar datos observados, cálculos propios y supuestos. Entender qué parte del mercado queda fuera y por qué.</p>
+      <div class="expand-hint">doble click · profundizar</div>
+      <div class="detail">En market research serio, la defensa no está en “llegar a un número grande”, sino en poder recorrer cada filtro hacia atrás y explicar qué evidencia lo sostiene.</div>
+    </div>
+    <div class="note"><strong>Timing: 4 min.</strong> Esta es una oportunidad de mostrar “cómo trabaja Tantauco” sin revelar una diligence específica. Puedes contar un ejemplo anonimizado.</div>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="wrap">
+    <div class="eyebrow">08 · Post-inversión</div>
+    <h2>Después del cheque, los fondos no son todos iguales</h2>
+    <p class="lead">Existe un espectro desde capital relativamente pasivo hasta modelos hands-on, aceleradoras e incubadoras.</p>
+
+    <div class="chart">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch">
+        <div class="q">Capital<br><span class="muted small">passive</span></div>
+        <div class="q">Network<br><span class="muted small">introducciones</span></div>
+        <div class="q q1">Tantauco<br><span class="small">commercial + investors</span></div>
+        <div class="q">Hands-on VC<br><span class="muted small">operación activa</span></div>
+        <div class="q">Accelerator / incubator<br><span class="muted small">programa estructurado</span></div>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:18px">
+      <div class="card accent"><h3>Conexiones comerciales</h3><p class="muted">Introducciones a potenciales clientes, partners y actores relevantes.</p></div>
+      <div class="card accent"><h3>Futuras rondas</h3><p class="muted">Conectar a founders con fondos e inversionistas cuando el negocio necesita nuevo capital.</p></div>
+      <div class="card accent expandable"><h3>Red del equipo</h3><p class="muted">Partners + investment team como activo del fondo.</p><div class="expand-hint">doble click</div><div class="detail">La propuesta de valor depende menos de “hacer el trabajo del founder” y más de abrir puertas, dar contexto y aumentar la calidad de decisiones y conexiones disponibles.</div></div>
+    </div>
+    <div class="note"><strong>Timing: 4 min.</strong> Evitar el cliché “value-add”. Dar uno o dos ejemplos concretos de introducciones comerciales o fundraising.</div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="wrap">
+    <div class="eyebrow">09 · Portafolio</div>
+    <h2>La tesis se vuelve observable en las compañías</h2>
+    <p class="lead">Cuatro ejemplos públicos / comentables del portafolio. Sin mostrar monto invertido ni valoración de entrada.</p>
+
+    <div class="portfolio">
+      <div class="company">
+        <div class="stage">Series B</div>
+        <h3>SOMOS</h3>
+        <p class="muted">Infraestructura de conectividad de alta velocidad combinando radiofrecuencia y fibra.</p>
+        <div class="valuation">US$340M</div>
+        <div class="small muted">última valoración post-money reportada en material Tantauco</div>
+      </div>
+      <div class="company">
+        <div class="stage">Series A+</div>
+        <h3>Koywe</h3>
+        <p class="muted">Infraestructura fintech para pagos y tesorería cross-border entre EE.UU. y LatAm.</p>
+        <div class="valuation">US$89.5M</div>
+        <div class="small muted">última valoración post-money reportada en material Tantauco</div>
+      </div>
+      <div class="company">
+        <div class="stage">Fund II · Core</div>
+        <h3>Grupalia</h3>
+        <p class="muted">Préstamos grupales con garantía solidaria para ampliar el acceso a financiamiento de micronegocios.</p>
+      </div>
+      <div class="company">
+        <div class="stage">Fund II</div>
+        <h3>Wareclouds</h3>
+        <p class="muted">Infraestructura logística urbana para inventario y última milla.</p>
+      </div>
+    </div>
+    <div class="source">Fuente: Tantauco Ventures — Corporate Deck y LP Meeting 2026.</div>
+    <div class="note"><strong>Timing: 4–5 min.</strong> SOMOS y Koywe son mejores para ilustrar “qué significa que una apuesta empiece a convertirse en outcome”. Grupalia/Wareclouds sirven para mostrar Fund II y evolución de tesis.</div>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="wrap">
+    <div class="eyebrow">10 · Reporting a LPs</div>
+    <h2>El LP no ve cada reunión. Ve evidencia de que el mandato se está ejecutando</h2>
+    <p class="lead">El reporting traduce cientos de decisiones operativas en una lectura de valor, riesgo, liquidez y evolución del portafolio.</p>
+
+    <div class="grid four">
+      <div class="card expandable"><div class="big">NAV</div><p>Valor estimado de las posiciones.</p><div class="expand-hint">doble click</div><div class="detail">No equivale a cash. Es valoración del portafolio aún no realizado.</div></div>
+      <div class="card expandable"><div class="big">TVPI</div><p>Valor total / capital aportado.</p><div class="expand-hint">doble click</div><div class="detail">Combina valor realizado y no realizado.</div></div>
+      <div class="card expandable"><div class="big">DPI</div><p>Capital devuelto / capital aportado.</p><div class="expand-hint">doble click</div><div class="detail">Mide liquidez efectivamente distribuida. Por eso gana importancia a medida que el fondo madura.</div></div>
+      <div class="card expandable"><div class="big">IRR</div><p>Retorno incorporando el tiempo.</p><div class="expand-hint">doble click</div><div class="detail">Dos fondos con el mismo múltiplo pueden tener IRRs distintos si uno devuelve capital mucho antes.</div></div>
+    </div>
+
+    <div class="grid two" style="margin-top:18px">
+      <div class="card"><h3>Qué cambió</h3><p class="muted">Rondas, métricas, write-ups/downs, capital events, riesgos, hitos.</p></div>
+      <div class="card"><h3>Qué viene</h3><p class="muted">Follow-ons, potencial liquidez, reservas, deployment y decisiones pendientes.</p></div>
+    </div>
+    <div class="source">El LP Meeting de Tantauco organiza precisamente performance, composición, evolución operacional y outlook del portafolio.</div>
+    <div class="note"><strong>Timing: 5 min.</strong> Volver al LP del inicio: “¿cómo sabe si te entregó capital a un buen gestor?”.</div>
+  </div>
+</section>
+
+<section id="s11">
+  <div class="wrap">
+    <div class="eyebrow">11 · Performance</div>
+    <h2>Un fondo no se evalúa en el vacío</h2>
+    <p class="lead">Hay que comparar contra vehículos del mismo vintage y estrategia, usando benchmarks consistentes.</p>
+
+    <div class="grid two">
+      <div class="card dark">
+        <span class="tag">TANTAUCO FUND I</span>
+        <div class="metric"><div class="num">US$24M</div><div class="label">tamaño del fondo</div></div>
+        <div class="metric"><div class="num">2022</div><div class="label">vintage</div></div>
+        <div class="metric"><div class="num">1er cuartil</div><div class="label">posición relativa dentro de su cohorte según Preqin y PitchBook</div></div>
+      </div>
+      <div class="card expandable">
+        <h3>¿Qué son Preqin y PitchBook?</h3>
+        <p class="muted">Dos plataformas de datos de mercados privados utilizadas para analizar fondos, gestoras, transacciones y benchmarks.</p>
+        <div class="expand-hint">doble click · profundizar</div>
+        <div class="detail"><strong>Preqin</strong> se especializa en private markets y es ampliamente usado por LPs y gestores para comparar vehículos y desempeño. <strong>PitchBook</strong> cubre private capital, venture, PE y M&A con bases de transacciones, compañías, inversionistas y fondos. La comparación útil es por vintage/cohorte y métrica comparable, no contra “el promedio de VC” en abstracto.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:34px">Una observación de contexto: LatAm vs. benchmarks globales</h3>
+    <div class="grid three" style="margin-top:14px">
+      <div class="card accent"><div class="big">79%</div><p>de la muestra LatAm se ubicó sobre la mediana global en TVPI.</p></div>
+      <div class="card accent"><div class="big">85%</div><p>de la muestra se ubicó sobre la mediana global en DPI.</p></div>
+      <div class="card"><div class="big">53</div><p>fondos · 28 gestoras · vintages 2013–2023.</p></div>
+    </div>
+    <div class="source">Fuente del análisis LatAm/global: Atlantico, reproducido en Tantauco LP Meeting 2026. Muestra ≈60% del capital VC LatAm del período.</div>
+    <div class="note"><strong>Timing: 5 min.</strong> No mostrar IRR/MOIC exactos del fondo. Explicar por qué “top quartile” necesita cohorte/vintage.</div>
+  </div>
+</section>
+
+<section id="s12">
+  <div class="wrap">
+    <div class="eyebrow">12 · Venture Capital en LatAm</div>
+    <h2>Tres datos que cambian cómo mirar el ecosistema</h2>
+    <p class="lead">No son una tesis completa de región. Son señales que ayudan a entender dónde está la selección y por qué importa.</p>
+
+    <div class="grid three">
+      <div class="card dark">
+        <div class="big">≈500</div>
+        <h3>Nuevas startups</h3>
+        <p class="muted">levantaron su primera ronda VC en LatAm durante los 18 meses previos a junio de 2025.</p>
+        <div class="source" style="color:#c7d3cf">54% estaban en Spanish-speaking LatAm · LAVCA</div>
+      </div>
+      <div class="card">
+        <div class="big">54%</div>
+        <h3>Early-stage</h3>
+        <p class="muted">de los dólares VC desplegados en 1H 2025 fueron a rondas early-stage.</p>
+        <div class="source">LAVCA · 2025 Startup Ecosystem Insights</div>
+      </div>
+      <div class="card accent">
+        <div class="big">38%</div>
+        <h3>Repeat founders</h3>
+        <p class="muted">de las rondas sobre US$1M en 2024–1H 2025 fueron para founders con experiencia previa.</p>
+        <div class="source">LAVCA</div>
+      </div>
+    </div>
+
+    <div class="chart" style="margin-top:22px">
+      <h3>Dos años después: ¿qué % de startups había levantado la siguiente ronda?</h3>
+      <div class="bars">
+        <div class="bargrp"><div class="bar" style="height:32%"><span>16%</span></div><div class="bar" style="height:78%"><span>39%</span></div><div class="bar" style="height:70%"><span>35%</span></div><div class="grp-label">2019</div></div>
+        <div class="bargrp"><div class="bar" style="height:40%"><span>20%</span></div><div class="bar" style="height:82%"><span>41%</span></div><div class="bar" style="height:100%"><span>50%</span></div><div class="grp-label">2020</div></div>
+        <div class="bargrp"><div class="bar" style="height:16%"><span>8%</span></div><div class="bar" style="height:40%"><span>20%</span></div><div class="bar" style="height:64%"><span>32%</span></div><div class="grp-label">2021</div></div>
+        <div class="bargrp"><div class="bar" style="height:6%"><span>3%</span></div><div class="bar" style="height:16%"><span>8%</span></div><div class="bar" style="height:30%"><span>15%</span></div><div class="grp-label">2022</div></div>
+      </div>
+      <div style="display:flex;gap:18px;margin-top:42px;font-size:11px;color:var(--muted)">
+        <span><b style="color:var(--green2)">■</b> Seed→A</span>
+        <span><b style="color:#6d8d86">■</b> A→B</span>
+        <span><b style="color:#a3b8b2">■</b> B→C</span>
+      </div>
+      <div class="source">LAVCA · Two-Year Graduation Rates in Latin America by Cohort Year and Stage, 2019–2022.</div>
+    </div>
+    <div class="callout">Levantar Seed no significa estar “encaminado” a Serie A. La selección y la capacidad de sobrevivir al ciclo importan.</div>
+    <div class="note"><strong>Timing: 6 min.</strong> Esta es la principal sección de industria. No convertirla en macro regional.</div>
+  </div>
+</section>
+
+<section id="s13">
+  <div class="wrap">
+    <div class="eyebrow">Cierre</div>
+    <div class="footerq">VC es una cadena de decisiones donde cada eslabón condiciona el siguiente.</div>
+    <div class="flow" style="margin-top:42px">
+      <div class="node">LP trust</div><div class="arrow">→</div>
+      <div class="node">Access</div><div class="arrow">→</div>
+      <div class="node">Selection</div><div class="arrow">→</div>
+      <div class="node">Outcomes</div>
+    </div>
+    <div class="callout" style="margin-top:42px">En el fondo, el producto del GP es una combinación de <span style="background:var(--lime);padding:0 .18em">juicio</span> y <span style="background:var(--lime);padding:0 .18em">relaciones</span>.</div>
+    <p class="lead">Preguntas.</p>
+    <div class="note"><strong>Timing: 1 min + Q&A.</strong> Volver al circuito del slide 1 y mostrar que LP fundraising, founder sourcing y portfolio support usan el mismo activo relacional de formas distintas.</div>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+const cards=[...document.querySelectorAll('.expandable')];
+cards.forEach(el=>{
+  el.addEventListener('dblclick',e=>{e.preventDefault();el.classList.toggle('open')});
+  el.addEventListener('click',e=>{
+    if(e.target.closest('a,button')) return;
+    if(window.matchMedia('(max-width:980px)').matches) el.classList.toggle('open');
+  });
+});
+document.getElementById('notesBtn').onclick=()=>document.body.classList.toggle('show-notes');
+document.addEventListener('keydown',e=>{
+  if(e.key.toLowerCase()==='n') document.body.classList.toggle('show-notes');
+});
+let allOpen=false;
+document.getElementById('expandBtn').onclick=()=>{
+  allOpen=!allOpen; cards.forEach(c=>c.classList.toggle('open',allOpen));
+  document.getElementById('expandBtn').textContent=allOpen?'cerrar todo':'expandir todo';
+};
+const sections=[...document.querySelectorAll('section')];
+const links=[...document.querySelectorAll('nav a')];
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id));
+    }
+  })
+},{rootMargin:'-42% 0px -42% 0px',threshold:0});
+sections.forEach(s=>obs.observe(s));
+function updateProgress(){
+  const d=document.documentElement;
+  const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+}
+document.addEventListener('scroll',updateProgress,{passive:true});
+</script>
+</body>
+</html>
