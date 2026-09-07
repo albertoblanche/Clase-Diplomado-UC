@@ -224,7 +224,7 @@ body.show-notes .note{display:block}
   <div class="wrap">
     <div class="eyebrow">Diplomado Venture Capital UC · Unidad 2</div>
     <h1>Tantauco Ventures</h1>
-    <p class="lead" style="margin-top:22px">Cómo funciona un fondo de Venture Capital, visto por dentro. Es una sola página: la recorremos por secciones y al final hay tiempo largo de preguntas.</p>
+    <p class="lead" style="margin-top:22px">Cómo funciona un fondo de Venture Capital, visto por dentro.</p>
 
     <ol class="toc">
       <li><b>01</b> El circuito del capital</li>
@@ -257,22 +257,35 @@ body.show-notes .note{display:block}
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="Circuito del capital: LPs, Fondo, GP, Startups, Crecimiento, Exits, Distribuciones y de vuelta a los LPs">
         <defs>
-          <marker id="agO" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--green)"/></marker>
-          <marker id="agS" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--teal-soft)"/></marker>
-          <marker id="agT" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--teal)"/></marker>
+          <marker id="agO" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--green)"/></marker>
+          <marker id="agS" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal-soft)"/></marker>
+          <marker id="agT" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal)"/></marker>
         </defs>
-        <circle cx="360" cy="270" r="190" fill="none" stroke="var(--line)" stroke-dasharray="2 6"/>
+        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 7"/>
+
+        <!-- capital circulando -->
+        <g>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-5.33s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+        </g>
 
         <!-- outbound: capital saliendo (verde) -->
-        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO)"/>
-        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO)"/>
-        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO)"/>
+        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
+        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
+        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
         <!-- transición: años de trabajo -->
-        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" marker-end="url(#agS)"/>
-        <!-- return: valor volviendo (teal) -->
-        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT)"/>
-        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT)"/>
-        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT)"/>
+        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#agS)"/>
+        <!-- return: valor volviendo (teal, más grueso) -->
+        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
+        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
+        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
+
+        <!-- $ sale / vuelve, flanqueando a los LPs -->
+        <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
+        <text x="456" y="93" text-anchor="middle" class="v-sub">sale</text>
+        <text x="264" y="76" text-anchor="middle" font-size="23" font-weight="800" fill="var(--lime-deep)">$</text>
+        <text x="264" y="93" text-anchor="middle" class="v-sub">vuelve</text>
 
         <!-- centro -->
         <text x="360" y="250" text-anchor="middle" class="v-sub" letter-spacing="2.5">EL CIRCUITO DEL CAPITAL</text>
@@ -911,19 +924,30 @@ body.show-notes .note{display:block}
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="El circuito del capital, ahora con la red de confianza que se reutiliza en fundraising, sourcing y portfolio">
         <defs>
-          <marker id="agO2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--green)"/></marker>
-          <marker id="agS2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--teal-soft)"/></marker>
-          <marker id="agT2" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--teal)"/></marker>
+          <marker id="agO2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--green)"/></marker>
+          <marker id="agS2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal-soft)"/></marker>
+          <marker id="agT2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal)"/></marker>
         </defs>
-        <circle cx="360" cy="270" r="190" fill="none" stroke="var(--line)" stroke-dasharray="2 6"/>
+        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 7"/>
 
-        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO2)"/>
-        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO2)"/>
-        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="2.5" marker-end="url(#agO2)"/>
-        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" marker-end="url(#agS2)"/>
-        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT2)"/>
-        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT2)"/>
-        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="2.5" marker-end="url(#agT2)"/>
+        <g>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-5.33s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+          <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
+        </g>
+
+        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
+        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
+        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
+        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#agS2)"/>
+        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
+        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
+        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
+
+        <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
+        <text x="456" y="93" text-anchor="middle" class="v-sub">sale</text>
+        <text x="264" y="76" text-anchor="middle" font-size="23" font-weight="800" fill="var(--lime-deep)">$</text>
+        <text x="264" y="93" text-anchor="middle" class="v-sub">vuelve</text>
 
         <text x="360" y="258" text-anchor="middle" class="v-sub" letter-spacing="2.5">EN VC, EL PRODUCTO DEL GP ES</text>
         <text x="360" y="292" text-anchor="middle" class="v-lbl" font-size="22" font-family="var(--serif)">juicio + relaciones</text>
