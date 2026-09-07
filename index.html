@@ -163,9 +163,10 @@ body.show-notes .note{display:block}
 .gp .who{min-width:0}
 .gp h3{margin:0 0 3px}
 .gp .role{font-size:10.5px;color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
-.map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
-.map-fig img{display:block;border-radius:8px}
-.map-fig figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+.map-fig,.shot{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
+.shot{margin:12px 0 0}
+.map-fig img,.shot img{display:block;border-radius:8px}
+.map-fig figcaption,.shot figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
 .ptable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
 .ptable th,.ptable td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
 .ptable th:first-child,.ptable td:first-child{text-align:left}
@@ -786,7 +787,49 @@ body.show-notes .note{display:block}
         <text x="40" y="30" class="v-sub" letter-spacing="2">DE MUCHAS OPORTUNIDADES A POCAS DECISIONES</text>
       </svg>
       </div>
-      <div class="source">Fuente: Tantauco Ventures — Investment Process; Dealflow Analysis. Sin cifras exactas del funnel.</div>
+      <div class="source">Fuente: Tantauco Ventures — Investment Process; Dealflow Analysis.</div>
+    </div>
+
+    <div class="grid three" style="margin-top:16px">
+      <div class="card dark"><div class="big">+1.200</div><h3>Startups analizadas</h3><p class="muted">desde que Tantauco hizo su primera inversión.</p></div>
+      <div class="card"><div class="big">30</div><h3>Inversiones</h3><p class="muted">a lo largo de Fund I y Fund II.</p></div>
+      <div class="card accent"><div class="big">2,5%</div><h3>Conversión</h3><p class="muted">de startup analizada a inversión.</p></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3>Qué analizamos antes de invertir</h3>
+      <div class="grid three">
+        <div class="card"><h3>Mercado</h3><p class="muted">Tamaño real alcanzable, múltiplos de la industria y qué crecimiento haría falta para justificar la entrada.</p></div>
+        <div class="card"><h3>Founders</h3><p class="muted">Evaluación estructurada: grit, liderazgo, experiencia, equipo, cultura y formación.</p></div>
+        <div class="card"><h3>Producto</h3><p class="muted">Tracción y métricas unitarias: CAC, LTV, churn, margen bruto, crecimiento mensual.</p></div>
+        <div class="card"><h3>Escala</h3><p class="muted">Proyección a varios años, MOIC esperado y valoración de salida que se necesitaría.</p></div>
+        <div class="card"><h3>Competencia</h3><p class="muted">Benchmark contra comparables: ARR, crecimiento, múltiplos, eficiencia.</p></div>
+        <div class="card"><h3>Estructura del deal</h3><p class="muted">Valoración de entrada, dilución esperada, participación objetivo y retorno esperado.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3>Nuestras herramientas de análisis</h3>
+      <p class="muted" style="margin-top:0">Buena parte de este análisis lo hacemos con herramientas internas que estandarizan cómo miramos cada oportunidad.</p>
+      <figure class="shot">
+        <img src="img/pr1.png" alt="Herramienta interna de Tantauco: análisis de oportunidad, estructura del deal, brecha de múltiplos de mercado y proyecciones año a año"/>
+        <figcaption>Análisis de oportunidad: estructura del deal, retorno esperado, brecha de crecimiento frente a la industria y proyección año a año.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/pr2.png" alt="Herramienta interna de Tantauco: benchmarks de founders y de la startup contra un comparable"/>
+        <figcaption>Benchmarks: evaluación de founders y de la startup, y comparación de métricas contra un comparable del mercado.</figcaption>
+      </figure>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3>De dónde vienen los deals</h3>
+      <p class="muted" style="margin-top:0">El origen cambia según qué tan avanzado está el funnel. El peso de la red de confianza sube a medida que nos acercamos a la decisión de inversión.</p>
+      <div class="grid three">
+        <div class="card"><span class="tag">Todo el flujo</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas</li><li>Cold / formulario / LinkedIn</li><li>Contactos personales</li><li>Aceleradoras y eventos</li></ul></div>
+        <div class="card"><span class="tag">Deals evaluados</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas</li><li>Contactos personales</li><li>Emprendedores del ecosistema</li><li>Co-inversión</li><li>LPs</li></ul></div>
+        <div class="card accent"><span class="tag">Deals invertidos</span><ul class="beats" style="margin-top:10px"><li>Co-inversión</li><li>Otros inversionistas</li><li>Contactos personales</li><li>Emprendedores</li><li>LPs y venture partners</li></ul><p class="why" style="margin-top:10px">El canal frío no aparece entre las inversiones.</p></div>
+      </div>
+      <div class="source">Ordenado de mayor a menor peso en cada etapa. Los porcentajes exactos van cuando los definamos.</div>
     </div>
 
     <div class="grid three" style="margin-top:16px">
@@ -794,7 +837,7 @@ body.show-notes .note{display:block}
       <div class="card expandable"><h3>Proceso</h3><p class="muted">First call → screening semanal → pre-IC → DD → referencias → partners → IC.</p><div class="expand-hint">doble click</div><div class="detail">El investment memo se construye en paralelo y cada etapa deja preguntas explícitas por resolver antes de avanzar.</div></div>
       <div class="card expandable"><h3>Gobierno</h3><p class="muted">No basta una persona convencida: hay revisión y aprobación formal.</p><div class="expand-hint">doble click</div><div class="detail">El proceso contempla IC interno y externo antes del term sheet y de la legal due diligence.</div></div>
     </div>
-    <div class="note"><strong>Timing: 5 min.</strong> No mostrar cifras exactas del funnel salvo pregunta directa. El insight: calidad de acceso + rigor.</div>
+    <div class="note"><strong>Timing: 5 min.</strong> Las cifras 1.200 / 30 / 2,5% están aprobadas para mostrar. El desglose por origen queda pendiente de porcentajes exactos. El insight: calidad de acceso + rigor.</div>
   </div>
 </section>
 
