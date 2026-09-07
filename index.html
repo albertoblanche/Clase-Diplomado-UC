@@ -172,7 +172,8 @@ body.show-notes .note{display:block}
 .ptable thead th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800;border-bottom:2px solid var(--line)}
 .ptable tbody td:first-child{font-weight:700}
 .ptable tbody td:first-child span{color:var(--muted);font-weight:400}
-.ptable tbody td:nth-child(7),.ptable tbody td:nth-child(8){color:var(--ink);font-weight:700}
+.ptable tbody td:nth-child(7){color:var(--ink);font-weight:700}
+.ptable tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
 .ptable tfoot td{font-weight:800;border-top:2px solid var(--ink);border-bottom:none;background:var(--sand)}
 @media(max-width:980px){
   .gp{flex-direction:column}
@@ -651,20 +652,57 @@ body.show-notes .note{display:block}
       <div class="viz-wrap">
       <table class="ptable">
         <thead>
-          <tr><th>Empresas</th><th>Scout</th><th>Scout II</th><th>Pre-Seed</th><th>Seed</th><th>Series A</th><th>Total c/u</th><th>Subtotal</th></tr>
+          <tr><th>Startups</th><th>Scout</th><th>Scout II</th><th>Pre-Seed</th><th>Seed</th><th>Series A</th><th>Total</th></tr>
         </thead>
         <tbody>
-          <tr><td>10 <span>(nº 1–10)</span></td><td>$50.000</td><td>—</td><td>—</td><td>—</td><td>—</td><td>$50.000</td><td>$500.000</td></tr>
-          <tr><td>5 <span>(11–15)</span></td><td>$50.000</td><td>$250.000</td><td>—</td><td>—</td><td>—</td><td>$300.000</td><td>$1.500.000</td></tr>
-          <tr><td>5 <span>(16–20)</span></td><td>$50.000</td><td>$250.000</td><td>—</td><td>$500.000</td><td>—</td><td>$800.000</td><td>$4.000.000</td></tr>
-          <tr><td>10 <span>(21–30)</span></td><td>—</td><td>—</td><td>$500.000</td><td>—</td><td>—</td><td>$500.000</td><td>$5.000.000</td></tr>
-          <tr><td>5 <span>(31–35)</span></td><td>—</td><td>—</td><td>$500.000</td><td>$500.000</td><td>—</td><td>$1.000.000</td><td>$5.000.000</td></tr>
-          <tr><td>5 <span>(36–40)</span></td><td>—</td><td>—</td><td>—</td><td>$700.000</td><td>—</td><td>$700.000</td><td>$3.500.000</td></tr>
-          <tr><td>2 <span>(41–42)</span></td><td>—</td><td>—</td><td>—</td><td>$700.000</td><td>$500.000</td><td>$1.200.000</td><td>$2.400.000</td></tr>
-          <tr><td>3 <span>(43–45)</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>$1.000.000</td><td>$1.000.000</td><td>$3.000.000</td></tr>
+          <tr><td>1</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>2</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>3</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>4</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>5</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>6</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>7</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>8</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>9</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>10</td><td>$50.000</td><td></td><td></td><td></td><td></td><td>$50.000</td></tr>
+          <tr><td>11</td><td>$50.000</td><td>$250.000</td><td></td><td></td><td></td><td>$300.000</td></tr>
+          <tr><td>12</td><td>$50.000</td><td>$250.000</td><td></td><td></td><td></td><td>$300.000</td></tr>
+          <tr><td>13</td><td>$50.000</td><td>$250.000</td><td></td><td></td><td></td><td>$300.000</td></tr>
+          <tr><td>14</td><td>$50.000</td><td>$250.000</td><td></td><td></td><td></td><td>$300.000</td></tr>
+          <tr><td>15</td><td>$50.000</td><td>$250.000</td><td></td><td></td><td></td><td>$300.000</td></tr>
+          <tr><td>16</td><td>$50.000</td><td>$250.000</td><td></td><td>$500.000</td><td></td><td>$800.000</td></tr>
+          <tr><td>17</td><td>$50.000</td><td>$250.000</td><td></td><td>$500.000</td><td></td><td>$800.000</td></tr>
+          <tr><td>18</td><td>$50.000</td><td>$250.000</td><td></td><td>$500.000</td><td></td><td>$800.000</td></tr>
+          <tr><td>19</td><td>$50.000</td><td>$250.000</td><td></td><td>$500.000</td><td></td><td>$800.000</td></tr>
+          <tr><td>20</td><td>$50.000</td><td>$250.000</td><td></td><td>$500.000</td><td></td><td>$800.000</td></tr>
+          <tr><td>21</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>22</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>23</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>24</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>25</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>26</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>27</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>28</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>29</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>30</td><td></td><td></td><td>$500.000</td><td></td><td></td><td>$500.000</td></tr>
+          <tr><td>31</td><td></td><td></td><td>$500.000</td><td>$500.000</td><td></td><td>$1.000.000</td></tr>
+          <tr><td>32</td><td></td><td></td><td>$500.000</td><td>$500.000</td><td></td><td>$1.000.000</td></tr>
+          <tr><td>33</td><td></td><td></td><td>$500.000</td><td>$500.000</td><td></td><td>$1.000.000</td></tr>
+          <tr><td>34</td><td></td><td></td><td>$500.000</td><td>$500.000</td><td></td><td>$1.000.000</td></tr>
+          <tr><td>35</td><td></td><td></td><td>$500.000</td><td>$500.000</td><td></td><td>$1.000.000</td></tr>
+          <tr><td>36</td><td></td><td></td><td></td><td>$700.000</td><td></td><td>$700.000</td></tr>
+          <tr><td>37</td><td></td><td></td><td></td><td>$700.000</td><td></td><td>$700.000</td></tr>
+          <tr><td>38</td><td></td><td></td><td></td><td>$700.000</td><td></td><td>$700.000</td></tr>
+          <tr><td>39</td><td></td><td></td><td></td><td>$700.000</td><td></td><td>$700.000</td></tr>
+          <tr><td>40</td><td></td><td></td><td></td><td>$700.000</td><td></td><td>$700.000</td></tr>
+          <tr><td>41</td><td></td><td></td><td></td><td>$700.000</td><td>$500.000</td><td>$1.200.000</td></tr>
+          <tr><td>42</td><td></td><td></td><td></td><td>$700.000</td><td>$500.000</td><td>$1.200.000</td></tr>
+          <tr><td>43</td><td></td><td></td><td></td><td></td><td>$1.000.000</td><td>$1.000.000</td></tr>
+          <tr><td>44</td><td></td><td></td><td></td><td></td><td>$1.000.000</td><td>$1.000.000</td></tr>
+          <tr><td>45</td><td></td><td></td><td></td><td></td><td>$1.000.000</td><td>$1.000.000</td></tr>
         </tbody>
         <tfoot>
-          <tr><td>45 empresas</td><td>$1.000.000</td><td>$2.500.000</td><td>$7.500.000</td><td>$9.900.000</td><td>$4.000.000</td><td>—</td><td>$24.900.000</td></tr>
+          <tr><td>Total Inversión</td><td></td><td></td><td></td><td></td><td></td><td>$25.000.000</td></tr>
         </tfoot>
       </table>
       </div>
