@@ -141,7 +141,8 @@ body.show-notes .note{display:block}
 .viz .v-white{fill:#fff}
 .viz .v-capsub{font-size:11px;fill:var(--muted);font-weight:600}
 
-.spectrum-note,.cap-note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+.spectrum-note,.cap-note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.6}
+.spectrum-note b{color:var(--ink)}
 
 .portfolio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .company{padding:20px;border:1px solid var(--line);background:var(--paper);border-radius:var(--radius);display:flex;flex-direction:column}
@@ -163,9 +164,10 @@ body.show-notes .note{display:block}
 .gp .who{min-width:0}
 .gp h3{margin:0 0 3px}
 .gp .role{font-size:10.5px;color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
-.map-fig,.shot{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
-.shot{margin:12px 0 0}
-.map-fig img,.shot img{display:block;border-radius:8px}
+.map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
+.map-fig img{display:block;border-radius:8px}
+.shot{margin:12px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+.shot img{display:block;border-radius:8px;width:100%;height:auto}
 .map-fig figcaption,.shot figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
 .ptable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
 .ptable th,.ptable td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -896,34 +898,40 @@ body.show-notes .note{display:block}
 
     <div class="panel">
       <div class="viz-wrap">
-      <svg class="viz" viewBox="0 0 760 230" role="img" aria-label="Espectro post-inversión, con Tantauco apoyado en su red">
-        <defs>
-          <linearGradient id="spec" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stop-color="var(--teal-soft)"/>
-            <stop offset="1" stop-color="var(--green)"/>
-          </linearGradient>
-        </defs>
-        <rect x="60" y="150" width="640" height="8" rx="4" fill="url(#spec)"/>
-        <g fill="var(--muted)">
-          <circle cx="60" cy="154" r="4"/><circle cx="220" cy="154" r="4"/><circle cx="380" cy="154" r="4"/><circle cx="540" cy="154" r="4"/><circle cx="700" cy="154" r="4"/>
+      <svg class="viz" viewBox="0 0 760 246" role="img" aria-label="Espectro de involucramiento del fondo tras invertir, de solo capital a aceleradora; Tantauco se apoya en su red">
+        <text x="40" y="22" class="v-sub" letter-spacing="1.2">CUÁNTO SE INVOLUCRA EL FONDO EN LA OPERACIÓN DE LA STARTUP</text>
+
+        <rect x="176" y="58" width="274" height="90" rx="10" fill="none" stroke="var(--lime-deep)" stroke-width="2"/>
+        <rect x="270" y="46" width="86" height="24" rx="12" fill="var(--lime-deep)"/>
+        <text x="313" y="63" text-anchor="middle" class="v-sub" style="font-weight:800;fill:var(--ink)">TANTAUCO</text>
+
+        <rect x="40"  y="94" width="132" height="46" rx="6" fill="var(--teal-soft)"/>
+        <rect x="178" y="94" width="132" height="46" rx="6" fill="#7aa79d"/>
+        <rect x="316" y="94" width="132" height="46" rx="6" fill="var(--teal)"/>
+        <rect x="454" y="94" width="132" height="46" rx="6" fill="#1f6a5c"/>
+        <rect x="592" y="94" width="132" height="46" rx="6" fill="var(--green)"/>
+        <g class="v-lbl v-white" text-anchor="middle">
+          <text x="106" y="122">Solo capital</text>
+          <text x="244" y="122">Red e intros</text>
+          <text x="382" y="122">Acompañamiento</text>
+          <text x="520" y="122">Hands-on</text>
+          <text x="658" y="122">Aceleradora</text>
         </g>
-        <g class="v-sub" fill="var(--muted)">
-          <text x="60" y="180" text-anchor="middle">Capital pasivo</text>
-          <text x="220" y="180" text-anchor="middle">Introducciones puntuales</text>
-          <text x="380" y="180" text-anchor="middle">Network activo</text>
-          <text x="540" y="180" text-anchor="middle">Hands-on / operación</text>
-          <text x="700" y="180" text-anchor="middle">Aceleradora / programa</text>
+        <g class="v-sub" fill="var(--muted)" text-anchor="middle">
+          <text x="106" y="162">cheque + reporting</text>
+          <text x="244" y="162">abre puertas</text>
+          <text x="382" y="162">trabajo con el founder</text>
+          <text x="520" y="162">opera áreas del negocio</text>
+          <text x="658" y="162">programa y cohortes</text>
         </g>
-        <!-- Tantauco pin at x=300 -->
-        <line x1="300" y1="150" x2="300" y2="86" stroke="var(--lime-deep)" stroke-width="2"/>
-        <circle cx="300" cy="150" r="6" fill="var(--lime-deep)"/>
-        <rect x="150" y="40" width="300" height="46" rx="10" fill="var(--green)"/>
-        <text x="300" y="60" text-anchor="middle" class="v-lbl v-white">Tantauco</text>
-        <text x="300" y="77" text-anchor="middle" class="v-sub v-white">conexiones comerciales · acceso a inversionistas · red del equipo</text>
-        <text x="60" y="26" class="v-sub" letter-spacing="2">¿QUÉ HACE EL FONDO DESPUÉS DE INVERTIR?</text>
+
+        <line x1="40" y1="200" x2="716" y2="200" stroke="var(--line)" stroke-width="2"/>
+        <path d="M710 194 L722 200 L710 206" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+        <text x="40" y="224" class="v-sub" fill="var(--muted)">menos intervención</text>
+        <text x="720" y="224" text-anchor="end" class="v-sub" fill="var(--muted)">más intervención</text>
       </svg>
       </div>
-      <div class="spectrum-note">Tantauco se apoya en su red, no en operar la compañía. La propuesta de valor es aumentar la calidad y cantidad de opciones disponibles para el founder.</div>
+      <div class="spectrum-note"><b>Cómo leerlo.</b> Después del cheque, cada fondo se ubica en algún punto de este espectro, según cuánto se mete en la operación de la startup: en un extremo solo pone capital y reporta a sus LPs; en el otro, una aceleradora con programa estructurado. Ninguna posición es “la correcta”. <b>Tantauco</b> se apoya en su red —conexiones comerciales, acceso a inversionistas y la red del equipo—: no opera la compañía, sino que aumenta la calidad y la cantidad de opciones del founder.</div>
     </div>
 
     <div class="grid three" style="margin-top:16px">
@@ -940,9 +948,8 @@ body.show-notes .note{display:block}
   <div class="wrap">
     <div class="eyebrow">09 · Portafolio</div>
     <h2>La tesis se vuelve observable en las compañías</h2>
-    <p class="lead">Cuatro ejemplos públicos / comentables. Cada card dice qué hace la empresa y por qué encaja con la tesis — sin mostrar monto invertido ni valoración de entrada.</p>
 
-    <div class="portfolio">
+    <div class="portfolio" style="margin-top:8px">
       <div class="company">
         <div class="stage">Series B</div>
         <h3>SOMOS</h3>
