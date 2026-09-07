@@ -166,6 +166,14 @@ body.show-notes .note{display:block}
 .map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
 .map-fig img{display:block;border-radius:8px}
 .map-fig figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+.ptable{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
+.ptable th,.ptable td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+.ptable th:first-child,.ptable td:first-child{text-align:left}
+.ptable thead th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:800;border-bottom:2px solid var(--line)}
+.ptable tbody td:first-child{font-weight:700}
+.ptable tbody td:first-child span{color:var(--muted);font-weight:400}
+.ptable tbody td:nth-child(7),.ptable tbody td:nth-child(8){color:var(--ink);font-weight:700}
+.ptable tfoot td{font-weight:800;border-top:2px solid var(--ink);border-bottom:none;background:var(--sand)}
 @media(max-width:980px){
   .gp{flex-direction:column}
   .gp-photo img,.map-fig img{max-width:100%;height:auto}
@@ -421,7 +429,7 @@ body.show-notes .note{display:block}
     <p class="seats-head">Quiénes lo gestionan</p>
     <div class="grid two">
       <div class="gp">
-        <div class="gp-photo"><img src="img/cristobal.jpg" alt="Cristóbal Piñera"/></div>
+        <div class="gp-photo"><img src="img/cristobal.png" alt="Cristóbal Piñera"/></div>
         <div class="who">
           <h3>Cristóbal Piñera</h3>
           <div class="role">Managing Partner</div>
@@ -435,7 +443,7 @@ body.show-notes .note{display:block}
         </div>
       </div>
       <div class="gp">
-        <div class="gp-photo"><img src="img/juan.jpg" alt="Juan Turner"/></div>
+        <div class="gp-photo"><img src="img/juan.png" alt="Juan Turner"/></div>
         <div class="who">
           <h3>Juan Turner</h3>
           <div class="role">Managing Partner</div>
@@ -451,7 +459,7 @@ body.show-notes .note{display:block}
     </div>
 
     <figure class="map-fig">
-      <img src="img/briter-latam-investors.png" alt="Mapa de los inversionistas de venture capital más activos en América Latina, agrupados por país donde están basados"/>
+      <img src="img/briter-latam-investors.jpeg" alt="Mapa de los inversionistas de venture capital más activos en América Latina, agrupados por país donde están basados"/>
       <figcaption>Los inversionistas de VC más activos en América Latina y dónde están basados. Fuente: Briter Bridges — LatAm Investment Report 2025.</figcaption>
     </figure>
 
@@ -633,11 +641,37 @@ body.show-notes .note{display:block}
 
     <div class="grid four" style="margin-top:16px">
       <div class="card"><h3>Upside</h3><p class="muted">¿Puede el ganador ser suficientemente grande?</p></div>
-      <div class="card"><h3>Ownership</h3><p class="muted">¿Cuánta parte del resultado captura el fondo?</p></div>
+      <div class="card accent"><h3>Ownership</h3><p class="muted">Tantauco apunta a cerca de 5% de cada empresa. ¿Cuánta parte del resultado captura el fondo?</p></div>
       <div class="card"><h3>Entry</h3><p class="muted">¿A qué valoración entramos?</p></div>
       <div class="card"><h3>Dilution</h3><p class="muted">¿Qué pasa en rondas futuras?</p></div>
     </div>
-    <div class="note"><strong>Timing: 5 min.</strong> Prepara la tesis: si necesitas outliers para devolver el fondo, no puedes invertir sin filtros. La escala vertical del gráfico deja ver lo desproporcionado.</div>
+    <div class="panel" style="margin-top:16px">
+      <h3>La tesis en números: participación objetivo y construcción de cartera</h3>
+      <p class="muted" style="margin-top:0">En Tantauco buscamos una participación cercana al <b style="color:var(--ink)">5%</b> en cada empresa donde invertimos. Para lograrlo hay que entrar temprano y reservar capital para acompañar a las que avanzan. Esta es una cartera modelo, como idea de despliegue del fondo:</p>
+      <div class="viz-wrap">
+      <table class="ptable">
+        <thead>
+          <tr><th>Empresas</th><th>Scout</th><th>Scout II</th><th>Pre-Seed</th><th>Seed</th><th>Series A</th><th>Total c/u</th><th>Subtotal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>10 <span>(nº 1–10)</span></td><td>$50.000</td><td>—</td><td>—</td><td>—</td><td>—</td><td>$50.000</td><td>$500.000</td></tr>
+          <tr><td>5 <span>(11–15)</span></td><td>$50.000</td><td>$250.000</td><td>—</td><td>—</td><td>—</td><td>$300.000</td><td>$1.500.000</td></tr>
+          <tr><td>5 <span>(16–20)</span></td><td>$50.000</td><td>$250.000</td><td>—</td><td>$500.000</td><td>—</td><td>$800.000</td><td>$4.000.000</td></tr>
+          <tr><td>10 <span>(21–30)</span></td><td>—</td><td>—</td><td>$500.000</td><td>—</td><td>—</td><td>$500.000</td><td>$5.000.000</td></tr>
+          <tr><td>5 <span>(31–35)</span></td><td>—</td><td>—</td><td>$500.000</td><td>$500.000</td><td>—</td><td>$1.000.000</td><td>$5.000.000</td></tr>
+          <tr><td>5 <span>(36–40)</span></td><td>—</td><td>—</td><td>—</td><td>$700.000</td><td>—</td><td>$700.000</td><td>$3.500.000</td></tr>
+          <tr><td>2 <span>(41–42)</span></td><td>—</td><td>—</td><td>—</td><td>$700.000</td><td>$500.000</td><td>$1.200.000</td><td>$2.400.000</td></tr>
+          <tr><td>3 <span>(43–45)</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>$1.000.000</td><td>$1.000.000</td><td>$3.000.000</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>45 empresas</td><td>$1.000.000</td><td>$2.500.000</td><td>$7.500.000</td><td>$9.900.000</td><td>$4.000.000</td><td>—</td><td>$24.900.000</td></tr>
+        </tfoot>
+      </table>
+      </div>
+      <div class="source">Cartera modelo de construcción de portafolio · 45 empresas · fondo objetivo US$25M. Muchos tickets pequeños de entrada (Scout) y capital reservado para seguir a las que avanzan de etapa.</div>
+    </div>
+
+    <div class="note"><strong>Timing: 5 min.</strong> Prepara la tesis: si necesitas outliers para devolver el fondo, no puedes invertir sin filtros. La construcción de cartera muestra cómo se reparte el capital: entradas chicas y follow-on concentrado.</div>
   </div>
 </section>
 
