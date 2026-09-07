@@ -157,15 +157,19 @@ body.show-notes .note{display:block}
 .beats li{font-size:13.5px;color:var(--ink-soft);padding-left:16px;position:relative;line-height:1.5}
 .beats li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;background:var(--lime-deep)}
 .beats li b{color:var(--ink);font-weight:700}
-.gp{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-.gp-photo{flex:0 0 96px}
-.gp-photo img{width:96px;height:120px;object-fit:cover;border-radius:12px;display:block;background:var(--sand);filter:grayscale(1) contrast(1.03)}
+.gp{display:flex;gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;align-items:flex-start}
+.gp-photo{flex:0 0 auto}
+.gp-photo img{display:block;border-radius:12px}
 .gp .who{min-width:0}
 .gp h3{margin:0 0 3px}
 .gp .role{font-size:10.5px;color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
-.map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow:hidden}
-.map-fig img{width:100%;height:auto;display:block;border-radius:8px}
+.map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow-x:auto}
+.map-fig img{display:block;border-radius:8px}
 .map-fig figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+@media(max-width:980px){
+  .gp{flex-direction:column}
+  .gp-photo img,.map-fig img{max-width:100%;height:auto}
+}
 
 .anatomy{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 2px}
 .anatomy .blk{background:var(--sand);border-radius:12px;padding:14px 12px;font-size:12px}
@@ -270,12 +274,10 @@ body.show-notes .note{display:block}
     <div class="panel" style="margin-top:8px">
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="Circuito del capital: LPs, Fondo, GP, Startups, Crecimiento, Exits, Distribuciones y de vuelta a los LPs">
-        <defs>
-          <marker id="arwG" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="13" markerHeight="13" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--green)"/></marker>
-          <marker id="arwS" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal-soft)"/></marker>
-          <marker id="arwT" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal)"/></marker>
-        </defs>
-        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <!-- anillo, coloreado por tramo -->
+        <path d="M 360 80 A 190 190 0 0 1 442.44 441.18" fill="none" stroke="var(--green)" stroke-width="2.5" opacity="0.55"/>
+        <path d="M 442.44 441.18 A 190 190 0 0 1 277.56 441.18" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="4 5"/>
+        <path d="M 277.56 441.18 A 190 190 0 0 1 360 80" fill="none" stroke="var(--teal)" stroke-width="3" opacity="0.6"/>
 
         <!-- capital circulando -->
         <g>
@@ -284,16 +286,16 @@ body.show-notes .note{display:block}
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
         </g>
 
-        <!-- outbound: capital saliendo (verde) · flecha en el centro del tramo, sin tocar los bloques -->
-        <path d="M 431.18 93.84 A 190 190 0 0 1 442.44 98.82 A 190 190 0 0 1 453.38 104.53" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
-        <path d="M 542.11 215.82 A 190 190 0 0 1 545.24 227.72 A 190 190 0 0 1 547.57 239.72" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
-        <path d="M 515.85 378.68 A 190 190 0 0 1 508.55 388.46 A 190 190 0 0 1 500.52 397.89" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
-        <!-- transición: años de trabajo -->
-        <path d="M 372.31 459.60 A 190 190 0 0 1 360 460 A 190 190 0 0 1 347.69 459.60" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="5 5" marker-mid="url(#arwS)"/>
-        <!-- return: valor volviendo (teal, más grueso) -->
-        <path d="M 219.48 397.89 A 190 190 0 0 1 211.45 388.46 A 190 190 0 0 1 204.15 378.68" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
-        <path d="M 172.43 239.72 A 190 190 0 0 1 174.76 227.72 A 190 190 0 0 1 177.89 215.82" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
-        <path d="M 266.62 104.53 A 190 190 0 0 1 277.56 98.82 A 190 190 0 0 1 288.83 93.84" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
+        <!-- chevrons de dirección, al centro de cada tramo (verde = sale · teal = vuelve) -->
+        <g fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(442.44,98.82) rotate(25.71)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(545.24,227.72) rotate(77.14)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(508.55,388.46) rotate(128.57)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal-soft)" transform="translate(360,460) rotate(180)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(211.45,388.46) rotate(231.43)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(174.76,227.72) rotate(282.86)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(277.56,98.82) rotate(334.29)"/>
+        </g>
 
         <!-- $ sale / vuelve, flanqueando a los LPs -->
         <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
@@ -478,47 +480,88 @@ body.show-notes .note{display:block}
   <div class="wrap">
     <div class="eyebrow">03 · Economics e incentivos</div>
     <h2>El GP administra capital ajeno, pero tiene que estar alineado</h2>
-    <p class="lead">Sigamos un ejemplo de principio a fin: un fondo de US$25M. ¿A dónde va cada dólar y quién gana qué?</p>
+    <p class="lead">El objetivo de Tantauco es un 20% de rentabilidad anual en un horizonte de 10 años. Sigamos un ejemplo de principio a fin para ver qué implica y quién gana qué.</p>
 
     <div class="panel">
-      <h3>Un fondo de US$25M, de entrada a salida</h3>
+      <h3>Un fondo de US$25M, del compromiso a la distribución</h3>
       <div class="viz-wrap">
-      <svg class="viz" viewBox="0 0 760 300" role="img" aria-label="Cómo se reparte un fondo de 25 millones: capital invertido, fees, y reparto del resultado bruto">
-        <text x="40" y="42" class="v-sub" letter-spacing="1.5">LOS LPs COMPROMETEN  ·  US$25M</text>
-        <rect x="40" y="52" width="544" height="52" rx="7" fill="var(--green)"/>
-        <text x="312" y="83" text-anchor="middle" class="v-lbl v-white">Capital para invertir  ·  ~US$20M</text>
-        <rect x="588" y="52" width="132" height="52" rx="7" fill="var(--teal-soft)"/>
-        <text x="654" y="77" text-anchor="middle" class="v-sub v-white" style="font-weight:700">Fees para</text>
-        <text x="654" y="92" text-anchor="middle" class="v-sub v-white" style="font-weight:700">operar ~US$5M</text>
+      <svg class="viz" viewBox="0 0 760 330" role="img" aria-label="Fondo de 25 millones con objetivo de 20% anual: fees, capital invertido y reparto del bruto entre LPs y carry del GP">
+        <text x="40" y="28" class="v-sub" letter-spacing="1.5">LOS LPs COMPROMETEN · US$25M</text>
+        <rect x="40" y="38" width="585" height="54" rx="7" fill="var(--green)"/>
+        <text x="332" y="70" text-anchor="middle" class="v-lbl v-white">Capital para invertir · US$21,5M</text>
+        <rect x="629" y="38" width="91" height="54" rx="7" fill="var(--teal-soft)"/>
+        <text x="674" y="62" text-anchor="middle" class="v-sub v-white" style="font-weight:700">Fees</text>
+        <text x="674" y="78" text-anchor="middle" class="v-sub v-white" style="font-weight:700">US$3,5M</text>
 
-        <text x="40" y="152" class="v-sub" letter-spacing="1.5">AÑOS DESPUÉS, EL PORTAFOLIO VALE  ·  US$75M  (EJEMPLO: 3×)</text>
-        <rect x="40" y="162" width="226" height="52" rx="7" fill="var(--teal)"/>
-        <text x="153" y="193" text-anchor="middle" class="v-lbl v-white">Capital de</text>
-        <rect x="270" y="162" width="362" height="52" rx="7" fill="var(--lime-deep)"/>
-        <text x="451" y="187" text-anchor="middle" class="v-lbl">Ganancia a LPs</text>
-        <text x="451" y="204" text-anchor="middle" class="v-sub" style="font-weight:700">80%  ·  US$40M</text>
-        <rect x="636" y="162" width="84" height="52" rx="7" fill="var(--amber)"/>
-        <text x="678" y="187" text-anchor="middle" class="v-sub" style="font-weight:800">Carry GP</text>
-        <text x="678" y="204" text-anchor="middle" class="v-sub" style="font-weight:700">20% · $10M</text>
-        <text x="153" y="234" text-anchor="middle" class="v-val">vuelve primero · US$25M</text>
+        <rect x="40" y="112" width="680" height="30" rx="8" fill="var(--lime-tint)" stroke="var(--lime-deep)"/>
+        <text x="380" y="131" text-anchor="middle" class="v-lbl" style="font-size:12.5px">Objetivo Tantauco: 20% anual durante 10 años → el capital del LP se multiplica por 6</text>
 
-        <line x1="40" y1="258" x2="720" y2="258" stroke="var(--line)"/>
-        <text x="40" y="280" class="v-capsub">Los LPs ponen US$25M y reciben ~US$65M (US$25M capital + US$40M ganancia) ≈ 2,6× · ~10% anual compuesto.</text>
-        <text x="40" y="296" class="v-capsub">El GP recibe carry (~US$10M) solo si el fondo gana, más los fees que financiaron la operación — no son ganancia.</text>
+        <text x="40" y="176" class="v-sub" letter-spacing="1.5">EL PORTAFOLIO BRUTO GENERA · US$185M</text>
+        <rect x="40" y="186" width="92" height="54" rx="7" fill="var(--teal)"/>
+        <text x="86" y="209" text-anchor="middle" class="v-sub v-white" style="font-weight:700">Capital</text>
+        <text x="86" y="224" text-anchor="middle" class="v-sub v-white" style="font-weight:700">a LPs</text>
+        <rect x="135" y="186" width="470" height="54" rx="7" fill="var(--lime-deep)"/>
+        <text x="370" y="209" text-anchor="middle" class="v-lbl">Ganancia a LPs · 80%</text>
+        <text x="370" y="226" text-anchor="middle" class="v-sub" style="font-weight:700">US$128M</text>
+        <rect x="608" y="186" width="112" height="54" rx="7" fill="var(--amber)"/>
+        <text x="664" y="209" text-anchor="middle" class="v-sub" style="font-weight:800">Carry GP</text>
+        <text x="664" y="226" text-anchor="middle" class="v-sub" style="font-weight:700">20% · US$32M</text>
+        <text x="86" y="258" text-anchor="middle" class="v-val">vuelve primero · US$25M</text>
+
+        <line x1="40" y1="278" x2="720" y2="278" stroke="var(--line)"/>
+        <text x="40" y="300" class="v-capsub">El LP pone US$25M y recibe US$153M: 6,1 veces su capital, equivalente a 20% anual durante 10 años.</text>
+        <text x="40" y="318" class="v-capsub">El GP cobra el carry (US$32M) solo si el fondo cumple ese objetivo de rentabilidad; aparte están los fees para operar.</text>
       </svg>
       </div>
-      <div class="disclaimer">Números ilustrativos y redondos. No representan los términos contractuales del fondo de Tantauco.</div>
+      <div class="disclaimer">Ejemplo con números redondos para ilustrar la mecánica. El 20% anual es una meta exigente, no una promesa.</div>
     </div>
 
     <div class="grid four" style="margin-top:16px">
-      <div class="card expandable"><div class="big">2%</div><h3>Management fee</h3><p class="muted">~US$0,5M al año sobre US$25M. Financia equipo y operación.</p><div class="expand-hint">doble click</div><div class="detail">Se cobra durante la vida del fondo, normalmente con bases/cadencias que bajan después del período de inversión. No es retorno del GP.</div></div>
-      <div class="card expandable"><div class="big">20%</div><h3>Carry</h3><p class="muted">Participación del GP en la ganancia, después de devolver el capital a los LPs.</p><div class="expand-hint">doble click</div><div class="detail">Solo es económicamente atractivo si el fondo crea valor. La mecánica exacta (hurdle, waterfall) depende del LPA.</div></div>
-      <div class="card expandable"><div class="big">GP$</div><h3>GP commitment</h3><p class="muted">El gestor también pone capital propio en el fondo.</p><div class="expand-hint">doble click</div><div class="detail">Refuerza la alineación: el GP comparte la exposición económica del vehículo, no solo el upside.</div></div>
-      <div class="card dark expandable"><h3>Gross vs. Net</h3><p class="muted">Gross = lo que genera el portafolio. Net = lo que le queda al LP tras fees y carry.</p><div class="expand-hint">doble click</div><div class="detail">Por eso los benchmarks institucionales distinguen gross y net. Gross sirve para evaluar la selección de inversiones; net es lo que realmente recibe el LP.</div></div>
+      <div class="card expandable"><div class="big">2%</div><h3>Management fee</h3><p class="muted">En Tantauco, 2% anual sobre los US$25M comprometidos durante los primeros 4 años. Después baja.</p><div class="expand-hint">doble click</div><div class="detail">El fee financia al equipo y la operación: sueldos, research, viajes, legal, auditoría. No es ganancia del GP. Los primeros 4 años son el período de inversión; después la tasa se reduce, cuando el trabajo pasa a acompañar el portafolio.</div></div>
+      <div class="card expandable"><div class="big">20%</div><h3>Carry</h3><p class="muted">Participación del GP en la ganancia, solo después de devolver el capital a los LPs.</p><div class="expand-hint">doble click</div><div class="detail">Hay además un hurdle: el carry se paga solo si el fondo supera una rentabilidad mínima acordada con los LPs. Si no se alcanza, el GP no recibe carry — únicamente los fees para haber operado.</div></div>
+      <div class="card expandable"><div class="big">GP$</div><h3>GP commitment</h3><p class="muted">Los GP invierten su propio dinero en el fondo, un porcentaje del total.</p><div class="expand-hint">doble click</div><div class="detail">Para un LP es una señal clave: cuánto "skin in the game" pone el gestor. Si el GP arriesga su patrimonio junto al del LP, los incentivos quedan alineados: gana de verdad solo si el fondo gana. Es de lo primero que mira un LP al decidir en qué fondo invertir.</div></div>
+      <div class="card dark expandable"><h3>Gross vs. Net</h3><p class="muted">Gross = lo que genera el portafolio. Net = lo que le queda al LP después de restar el management fee y el carry.</p><div class="expand-hint">doble click</div><div class="detail">El net descuenta el costo de los fees y del carry; el gross no descuenta ninguno de los dos. Dos fondos con el mismo gross pueden dejarle al LP retornos netos distintos según su estructura de costos. Por eso los benchmarks institucionales siempre distinguen gross y net.</div></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px">
+      <h3>¿Cuándo cobra el GP el carry? Cascada europea vs. americana</h3>
+      <div class="grid two">
+        <div class="card accent">
+          <span class="tag">Europea · whole-fund</span>
+          <ul class="beats" style="margin-top:12px">
+            <li>El carry depende de los retornos <b>globales</b> del fondo.</li>
+            <li>Primero se devuelve <b>todo</b> el capital aportado por los LPs (y el hurdle).</li>
+            <li>Recién cuando el fondo pasa el <b>1× global</b>, el GP empieza a cobrar carry.</li>
+            <li>El GP cobra más tarde; el LP está más protegido.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">Americana · deal-by-deal</span>
+          <ul class="beats" style="margin-top:12px">
+            <li>El GP cobra carry a medida que <b>cada inversión</b> se realiza, una vez que ese deal pasa su <b>1×</b> (devuelve su costo).</li>
+            <li>Un <b>escrow / clawback</b> respalda al LP si el fondo global termina rindiendo menos de lo esperado.</li>
+            <li>El GP cobra antes. Es lo más común en EE.UU.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:16px">
+      <div class="card deep">
+        <span class="tag">Tantauco Fund I</span>
+        <h3 style="margin-top:14px">Primer cuartil global · añada 2021</h3>
+        <p class="muted">Entre los fondos de VC del mundo que arrancaron el mismo año, Fund I se ubica hoy en el primer cuartil.</p>
+      </div>
+      <div class="card expandable">
+        <h3>¿Qué significa "primer cuartil"?</h3>
+        <p class="muted">Se ordenan los fondos por retorno y se parten en cuatro grupos iguales. Primer cuartil = el 25% con mejor desempeño.</p>
+        <div class="expand-hint">doble click · profundizar</div>
+        <div class="detail">La comparación siempre es contra fondos de la <em>misma añada</em> (mismo año de inicio), porque el ciclo de mercado los afecta parejo. Comparar un fondo de 2021 con uno de 2015 no dice nada útil.</div>
+      </div>
     </div>
 
     <div class="callout">La pregunta real no es “¿ganamos dinero?”, sino <span class="hl">“¿el retorno compensa 10+ años de iliquidez y riesgo?”</span></div>
-    <div class="note"><strong>Timing: 6 min.</strong> Mantener sin matemática compleja. El punto que se lleva la audiencia: 2,6× suena grande, pero son ~10% al año — y el carry solo existe si el fondo gana.</div>
+    <div class="note"><strong>Timing: 6 min.</strong> Sin matemática compleja. El punto que se lleva la audiencia: 20% anual suena modesto, pero multiplica el capital por 6 en 10 años — y el GP solo cobra carry si llega a esa meta y pone su propia plata en el fondo.</div>
   </div>
 </section>
 
@@ -987,12 +1030,9 @@ body.show-notes .note{display:block}
     <div class="panel" style="margin-top:34px">
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="El circuito del capital, ahora con la red de confianza que se reutiliza en fundraising, sourcing y portfolio">
-        <defs>
-          <marker id="arwG2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="13" markerHeight="13" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--green)"/></marker>
-          <marker id="arwS2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal-soft)"/></marker>
-          <marker id="arwT2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal)"/></marker>
-        </defs>
-        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <path d="M 360 80 A 190 190 0 0 1 442.44 441.18" fill="none" stroke="var(--green)" stroke-width="2.5" opacity="0.55"/>
+        <path d="M 442.44 441.18 A 190 190 0 0 1 277.56 441.18" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="4 5"/>
+        <path d="M 277.56 441.18 A 190 190 0 0 1 360 80" fill="none" stroke="var(--teal)" stroke-width="3" opacity="0.6"/>
 
         <g>
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
@@ -1000,13 +1040,15 @@ body.show-notes .note{display:block}
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
         </g>
 
-        <path d="M 431.18 93.84 A 190 190 0 0 1 442.44 98.82 A 190 190 0 0 1 453.38 104.53" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
-        <path d="M 542.11 215.82 A 190 190 0 0 1 545.24 227.72 A 190 190 0 0 1 547.57 239.72" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
-        <path d="M 515.85 378.68 A 190 190 0 0 1 508.55 388.46 A 190 190 0 0 1 500.52 397.89" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
-        <path d="M 372.31 459.60 A 190 190 0 0 1 360 460 A 190 190 0 0 1 347.69 459.60" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="5 5" marker-mid="url(#arwS2)"/>
-        <path d="M 219.48 397.89 A 190 190 0 0 1 211.45 388.46 A 190 190 0 0 1 204.15 378.68" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
-        <path d="M 172.43 239.72 A 190 190 0 0 1 174.76 227.72 A 190 190 0 0 1 177.89 215.82" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
-        <path d="M 266.62 104.53 A 190 190 0 0 1 277.56 98.82 A 190 190 0 0 1 288.83 93.84" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
+        <g fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(442.44,98.82) rotate(25.71)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(545.24,227.72) rotate(77.14)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--green)" transform="translate(508.55,388.46) rotate(128.57)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal-soft)" transform="translate(360,460) rotate(180)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(211.45,388.46) rotate(231.43)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(174.76,227.72) rotate(282.86)"/>
+          <path d="M-3 -4.5 L3 0 L-3 4.5" stroke="var(--teal)" transform="translate(277.56,98.82) rotate(334.29)"/>
+        </g>
 
         <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
         <text x="456" y="93" text-anchor="middle" class="v-sub">sale</text>
