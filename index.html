@@ -212,6 +212,19 @@ body.show-notes .note{display:block}
   .grid.two,.grid.three,.grid.four,.portfolio,.anatomy,.quart{grid-template-columns:1fr}
   .anatomy,.quart{gap:10px}
 }
+#gate{position:fixed;inset:0;z-index:5000;background:var(--green-deep);color:#fff;display:flex;align-items:center;justify-content:center;padding:24px}
+body.unlocked #gate{display:none}
+body:not(.unlocked) .shell,body:not(.unlocked) .top-tools,body:not(.unlocked) #progress{display:none}
+.gate-box{width:min(420px,100%)}
+.gate-brand{font-weight:800;letter-spacing:.14em;font-size:12px;color:var(--lime)}
+.gate-box h1{font-family:var(--serif);font-weight:600;font-size:32px;margin:14px 0 8px;color:#fff;max-width:none;line-height:1.1}
+.gate-box p{color:#bcd0cb;font-size:14px;margin:0 0 22px}
+#gateForm{display:flex;gap:8px}
+#gatePass{flex:1;min-width:0;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-family:var(--sans)}
+#gatePass::placeholder{color:#8fb1a9}
+#gateForm button{padding:12px 20px;border-radius:10px;border:0;background:var(--lime);color:var(--ink);font-weight:800;font-size:14px;cursor:pointer;font-family:var(--sans)}
+#gateErr{display:none;margin-top:12px;color:#f2b8b8;font-size:13px}
+#gateErr.show{display:block}
 @media print{
   aside,.top-tools,#progress{display:none}
   section{min-height:auto;page-break-after:always;padding:30px;border:0}
@@ -222,6 +235,42 @@ body.show-notes .note{display:block}
 </style>
 </head>
 <body>
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">TANTAUCO VENTURES</div>
+    <h1>Diplomado Venture Capital UC</h1>
+    <p>Material de clase. Ingresa la clave de acceso para continuar.</p>
+    <form id="gateForm">
+      <input type="password" id="gatePass" autocomplete="off" spellcheck="false" placeholder="Clave de acceso"/>
+      <button type="submit">Entrar</button>
+    </form>
+    <div id="gateErr">Clave incorrecta.</div>
+  </div>
+</div>
+<script>
+(function(){
+  var HASH="500d24c57a50b7bb7b401600ac537904e4918d4957e3a3392568c945dd472ea7";
+  var ALT="RGlwbG9tYWRvVmVudHVyZVVD";
+  var KEY="tv-uc-diplomado";
+  function unlock(){document.body.classList.add("unlocked");}
+  try{if(sessionStorage.getItem(KEY)==="1")unlock();}catch(e){}
+  var form=document.getElementById("gateForm");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("gatePass").value||"";
+    var ok=function(good){
+      if(good){try{sessionStorage.setItem(KEY,"1");}catch(e){}unlock();}
+      else{document.getElementById("gateErr").classList.add("show");document.getElementById("gatePass").select();}
+    };
+    if(window.crypto&&crypto.subtle){
+      crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(buf){
+        var h=Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,"0");}).join("");
+        ok(h===HASH);
+      }).catch(function(){ok(v===atob(ALT));});
+    }else{ok(v===atob(ALT));}
+  });
+})();
+</script>
 <div id="progress"></div>
 <div class="top-tools">
   <button class="tool" id="notesBtn">N · notas</button>
