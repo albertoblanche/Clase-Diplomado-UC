@@ -825,13 +825,66 @@ body.show-notes .note{display:block}
 
     <div class="panel" style="margin-top:16px">
       <h3>De dónde vienen los deals</h3>
-      <p class="muted" style="margin-top:0">El origen cambia según qué tan avanzado está el funnel. El peso de la red de confianza sube a medida que nos acercamos a la decisión de inversión.</p>
-      <div class="grid three">
-        <div class="card"><span class="tag">Todo el flujo</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas</li><li>Cold / formulario / LinkedIn</li><li>Contactos personales</li><li>Aceleradoras y eventos</li></ul></div>
-        <div class="card"><span class="tag">Deals evaluados</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas</li><li>Contactos personales</li><li>Emprendedores del ecosistema</li><li>Co-inversión</li><li>LPs</li></ul></div>
-        <div class="card accent"><span class="tag">Deals invertidos</span><ul class="beats" style="margin-top:10px"><li>Co-inversión</li><li>Otros inversionistas</li><li>Contactos personales</li><li>Emprendedores</li><li>LPs y venture partners</li></ul><p class="why" style="margin-top:10px">El canal frío no aparece entre las inversiones.</p></div>
+      <p class="muted" style="margin-top:0">El origen cambia según qué tan avanzado está el funnel. El canal frío llena la parte alta, pero casi no sobrevive al filtro; las relaciones de confianza dominan la decisión de inversión.</p>
+      <div class="viz-wrap">
+      <svg class="viz" viewBox="0 0 760 292" role="img" aria-label="Composición del origen de los deals en tres etapas del funnel: flujo total, evaluados e invertidos">
+        <text x="20" y="20" class="v-sub" letter-spacing="1.1">ORIGEN DE LOS DEALS · CÓMO EL CANAL FRÍO DESAPARECE Y LA RED CRECE</text>
+
+        <text x="140" y="66" text-anchor="end" class="v-lbl">Flujo total</text>
+        <text x="140" y="82" text-anchor="end" class="v-sub">n = 835</text>
+        <rect x="150" y="50" width="216.6" height="40" fill="var(--green)"/>
+        <rect x="366.6" y="50" width="96.9" height="40" fill="var(--teal)"/>
+        <rect x="463.5" y="50" width="5.7" height="40" fill="var(--lime-deep)"/>
+        <rect x="469.2" y="50" width="22.8" height="40" fill="var(--amber)"/>
+        <rect x="492" y="50" width="11.4" height="40" fill="var(--green-deep)"/>
+        <rect x="503.4" y="50" width="159.6" height="40" fill="var(--muted)"/>
+        <rect x="663" y="50" width="57" height="40" fill="var(--teal-soft)"/>
+        <text x="258" y="75" text-anchor="middle" class="v-val v-white">38%</text>
+        <text x="415" y="75" text-anchor="middle" class="v-val v-white">17%</text>
+        <text x="583" y="75" text-anchor="middle" class="v-val v-white">28%</text>
+
+        <text x="140" y="126" text-anchor="end" class="v-lbl">Evaluados</text>
+        <text x="140" y="142" text-anchor="end" class="v-sub">n = 122</text>
+        <rect x="150" y="110" width="193.8" height="40" fill="var(--green)"/>
+        <rect x="343.8" y="110" width="176.7" height="40" fill="var(--teal)"/>
+        <rect x="520.5" y="110" width="39.9" height="40" fill="var(--lime-deep)"/>
+        <rect x="560.4" y="110" width="45.6" height="40" fill="var(--amber)"/>
+        <rect x="606" y="110" width="28.5" height="40" fill="var(--green-deep)"/>
+        <rect x="634.5" y="110" width="5.7" height="40" fill="var(--muted)"/>
+        <rect x="640.2" y="110" width="79.8" height="40" fill="var(--teal-soft)"/>
+        <text x="247" y="135" text-anchor="middle" class="v-val v-white">34%</text>
+        <text x="432" y="135" text-anchor="middle" class="v-val v-white">31%</text>
+
+        <text x="140" y="186" text-anchor="end" class="v-lbl">Invertidos</text>
+        <text x="140" y="202" text-anchor="end" class="v-sub">n = 18</text>
+        <rect x="150" y="170" width="125.4" height="40" fill="var(--green)"/>
+        <rect x="275.4" y="170" width="125.4" height="40" fill="var(--teal)"/>
+        <rect x="400.8" y="170" width="159.6" height="40" fill="var(--lime-deep)"/>
+        <rect x="560.4" y="170" width="62.7" height="40" fill="var(--amber)"/>
+        <rect x="623.1" y="170" width="62.7" height="40" fill="var(--green-deep)"/>
+        <rect x="685.8" y="170" width="34.2" height="40" fill="var(--teal-soft)"/>
+        <text x="212" y="195" text-anchor="middle" class="v-val v-white">22%</text>
+        <text x="338" y="195" text-anchor="middle" class="v-val v-white">22%</text>
+        <text x="480" y="195" text-anchor="middle" class="v-val">28%</text>
+
+        <g class="v-sub" fill="var(--muted)">
+          <rect x="20" y="234" width="11" height="11" fill="var(--green)"/><text x="37" y="243">Otros inversionistas</text>
+          <rect x="170" y="234" width="11" height="11" fill="var(--teal)"/><text x="187" y="243">Contactos personales</text>
+          <rect x="330" y="234" width="11" height="11" fill="var(--lime-deep)"/><text x="347" y="243">Co-inversión</text>
+          <rect x="440" y="234" width="11" height="11" fill="var(--amber)"/><text x="457" y="243">Emprendedores</text>
+          <rect x="560" y="234" width="11" height="11" fill="var(--green-deep)"/><text x="577" y="243">LPs</text>
+          <rect x="20" y="254" width="11" height="11" fill="var(--muted)"/><text x="37" y="263">Cold / formulario / LinkedIn</text>
+          <rect x="230" y="254" width="11" height="11" fill="var(--teal-soft)"/><text x="247" y="263">Aceleradoras · eventos · otros</text>
+        </g>
+        <text x="20" y="286" class="v-capsub" fill="var(--ink)" style="font-weight:700">Cold: 28% → 1% → 0%.  ·  Red de confianza: ~63% → 87% → 100%.</text>
+      </svg>
       </div>
-      <div class="source">Ordenado de mayor a menor peso en cada etapa. Los porcentajes exactos van cuando los definamos.</div>
+      <div class="grid three">
+        <div class="card"><span class="tag">Flujo total · n=835</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas <b>38%</b></li><li>Cold / formulario / LinkedIn <b>28%</b></li><li>Contactos personales <b>17%</b></li><li>Aceleradoras / demoday <b>6%</b></li><li>Emprendedores <b>4%</b></li></ul></div>
+        <div class="card"><span class="tag">Evaluados · n=122</span><ul class="beats" style="margin-top:10px"><li>Otros inversionistas <b>34%</b></li><li>Contactos personales <b>31%</b></li><li>Emprendedores <b>8%</b></li><li>Co-inversión <b>7%</b></li><li>Aceleradoras / demoday <b>7%</b></li></ul></div>
+        <div class="card accent"><span class="tag">Invertidos · n=18</span><ul class="beats" style="margin-top:10px"><li>Co-inversión <b>28%</b></li><li>Otros inversionistas <b>22%</b></li><li>Contactos personales <b>22%</b></li><li>Emprendedores <b>11%</b></li><li>LPs <b>11%</b></li></ul><p class="why" style="margin-top:10px">Cold / formulario / LinkedIn: <b>0%</b>.</p></div>
+      </div>
+      <div class="source">Fuente: Tantauco Ventures — Dealflow Analysis (enero 2025, análisis desde 2023). Cifras a esa fecha; hoy el acumulado es mayor (+1.200 analizadas, 30 inversiones).</div>
     </div>
 
     <div class="grid three" style="margin-top:16px">
