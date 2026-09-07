@@ -153,6 +153,20 @@ body.show-notes .note{display:block}
 .company .valuation{font-family:var(--serif);font-size:22px;font-weight:600;margin-top:14px}
 .company .valuation small{display:block;font-family:var(--sans);font-size:10.5px;color:var(--muted);font-weight:500;margin-top:3px;letter-spacing:0}
 
+.beats{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.beats li{font-size:13.5px;color:var(--ink-soft);padding-left:16px;position:relative;line-height:1.5}
+.beats li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;background:var(--lime-deep)}
+.beats li b{color:var(--ink);font-weight:700}
+.gp{display:flex;gap:16px;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.gp-photo{flex:0 0 96px}
+.gp-photo img{width:96px;height:120px;object-fit:cover;border-radius:12px;display:block;background:var(--sand);filter:grayscale(1) contrast(1.03)}
+.gp .who{min-width:0}
+.gp h3{margin:0 0 3px}
+.gp .role{font-size:10.5px;color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.09em;margin-bottom:12px}
+.map-fig{margin:16px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:14px;overflow:hidden}
+.map-fig img{width:100%;height:auto;display:block;border-radius:8px}
+.map-fig figcaption{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+
 .anatomy{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:4px 0 2px}
 .anatomy .blk{background:var(--sand);border-radius:12px;padding:14px 12px;font-size:12px}
 .anatomy .blk b{display:block;font-size:12.5px;margin-bottom:5px;letter-spacing:.02em}
@@ -257,11 +271,11 @@ body.show-notes .note{display:block}
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="Circuito del capital: LPs, Fondo, GP, Startups, Crecimiento, Exits, Distribuciones y de vuelta a los LPs">
         <defs>
-          <marker id="agO" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--green)"/></marker>
-          <marker id="agS" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal-soft)"/></marker>
-          <marker id="agT" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal)"/></marker>
+          <marker id="arwG" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="13" markerHeight="13" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--green)"/></marker>
+          <marker id="arwS" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal-soft)"/></marker>
+          <marker id="arwT" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal)"/></marker>
         </defs>
-        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 7"/>
+        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="2"/>
 
         <!-- capital circulando -->
         <g>
@@ -270,16 +284,16 @@ body.show-notes .note{display:block}
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
         </g>
 
-        <!-- outbound: capital saliendo (verde) -->
-        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
-        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
-        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO)"/>
+        <!-- outbound: capital saliendo (verde) · flecha en el centro del tramo, sin tocar los bloques -->
+        <path d="M 431.18 93.84 A 190 190 0 0 1 442.44 98.82 A 190 190 0 0 1 453.38 104.53" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
+        <path d="M 542.11 215.82 A 190 190 0 0 1 545.24 227.72 A 190 190 0 0 1 547.57 239.72" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
+        <path d="M 515.85 378.68 A 190 190 0 0 1 508.55 388.46 A 190 190 0 0 1 500.52 397.89" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG)"/>
         <!-- transición: años de trabajo -->
-        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#agS)"/>
+        <path d="M 372.31 459.60 A 190 190 0 0 1 360 460 A 190 190 0 0 1 347.69 459.60" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="5 5" marker-mid="url(#arwS)"/>
         <!-- return: valor volviendo (teal, más grueso) -->
-        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
-        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
-        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT)"/>
+        <path d="M 219.48 397.89 A 190 190 0 0 1 211.45 388.46 A 190 190 0 0 1 204.15 378.68" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
+        <path d="M 172.43 239.72 A 190 190 0 0 1 174.76 227.72 A 190 190 0 0 1 177.89 215.82" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
+        <path d="M 266.62 104.53 A 190 190 0 0 1 277.56 98.82 A 190 190 0 0 1 288.83 93.84" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT)"/>
 
         <!-- $ sale / vuelve, flanqueando a los LPs -->
         <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
@@ -389,11 +403,61 @@ body.show-notes .note{display:block}
       </div>
     </div>
 
+    <div class="panel">
+      <h3>La historia de Tantauco, en corto</h3>
+      <ul class="beats">
+        <li><b>2022</b> — primer cierre de Fund I. Tamaño US$24M, vintage 2022.</li>
+        <li><b>Foco</b> — Pre-Seed, Seed y Series A en Latinoamérica.</li>
+        <li><b>Tesis</b> — founder-first: equipos excepcionales resolviendo problemas estructurales de la región, con modelos escalables y defendibles.</li>
+        <li><b>Cómo se levantó</b> — apoyado en redes de confianza y en la relación con el ecosistema, más que en un proceso institucional clásico.</li>
+        <li><b>Hoy</b> — desplegando Fund II (Grupalia, Wareclouds, entre otras).</li>
+        <li><b>Resultado</b> — Fund I en el primer cuartil de su cohorte según Preqin y PitchBook.</li>
+      </ul>
+      <div class="note"><strong>Para contar en vivo.</strong> Son anclajes — la historia (por qué partió, cómo se armó el equipo, los primeros LPs) la cuentas tú.</div>
+    </div>
+
+    <p class="seats-head">Quiénes lo gestionan</p>
+    <div class="grid two">
+      <div class="gp">
+        <div class="gp-photo"><img src="img/cristobal.jpg" alt="Cristóbal Piñera"/></div>
+        <div class="who">
+          <h3>Cristóbal Piñera</h3>
+          <div class="role">Managing Partner</div>
+          <ul class="beats">
+            <li>Psicólogo, MBA del MIT.</li>
+            <li>En 2012 cofundó la startup Hop.in en San Francisco, California.</li>
+            <li>Director de Innovación en Fundación País Digital y Head of Innovation en Cencosud.</li>
+            <li>Head of Venture Capital en el family office Inversiones Odisea (2017–2022): gestionó una cartera de más de US$200M en compromisos a fondos.</li>
+            <li>Perfil poco común —psicólogo, emprendedor y líder de VC— para los desafíos del early-stage.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="gp">
+        <div class="gp-photo"><img src="img/juan.jpg" alt="Juan Turner"/></div>
+        <div class="who">
+          <h3>Juan Turner</h3>
+          <div class="role">Managing Partner</div>
+          <ul class="beats">
+            <li>Abogado de finanzas corporativas con amplia experiencia.</li>
+            <li>Cofundó Tantauco Ventures tras ser Managing Partner en Grasty Quintana Majlis, estudio de Santiago (hoy Clyde &amp; Co.).</li>
+            <li>Master of Laws de la University of Chicago Law School; abogado de la Pontificia Universidad Católica de Chile.</li>
+            <li>+15 años en M&amp;A, financiamiento y mercados de capitales, en mercados públicos, private equity y venture capital.</li>
+            <li>Aporta la mirada regulatoria y transaccional de la operación del fondo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <figure class="map-fig">
+      <img src="img/briter-latam-investors.png" alt="Mapa de los inversionistas de venture capital más activos en América Latina, agrupados por país donde están basados"/>
+      <figcaption>Los inversionistas de VC más activos en América Latina y dónde están basados. Fuente: Briter Bridges — LatAm Investment Report 2025.</figcaption>
+    </figure>
+
     <div class="callout">La misma red que ayuda a levantar capital después alimenta el <span class="hl">sourcing</span>, el <span class="hl">follow-on</span> y las conexiones comerciales.</div>
 
     <div class="grid two">
       <div class="card accent expandable">
-        <h3>¿Por qué aparecen tanto los HNWI?</h3>
+        <h3>¿Por qué aparecen tanto las personas de alto patrimonio?</h3>
         <p class="muted">Porque VC exige tolerar iliquidez, dispersión de resultados y horizontes largos.</p>
         <div class="expand-hint">doble click · profundizar</div>
         <div class="detail">En el caso de Tantauco, las relaciones con inversionistas de alto patrimonio han sido relevantes. No es una regla de la industria: también existen family offices, endowments, fondos de pensiones y otros LPs institucionales.</div>
@@ -924,11 +988,11 @@ body.show-notes .note{display:block}
       <div class="viz-wrap">
       <svg class="viz" viewBox="0 0 720 540" role="img" aria-label="El circuito del capital, ahora con la red de confianza que se reutiliza en fundraising, sourcing y portfolio">
         <defs>
-          <marker id="agO2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--green)"/></marker>
-          <marker id="agS2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal-soft)"/></marker>
-          <marker id="agT2" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0 0 L12 6 L0 12 z" fill="var(--teal)"/></marker>
+          <marker id="arwG2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="13" markerHeight="13" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--green)"/></marker>
+          <marker id="arwS2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal-soft)"/></marker>
+          <marker id="arwT2" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="14" markerHeight="14" orient="auto"><path d="M1 1 L11 6 L1 11 z" fill="var(--teal)"/></marker>
         </defs>
-        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="2 7"/>
+        <path d="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80" fill="none" stroke="var(--line)" stroke-width="2"/>
 
         <g>
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
@@ -936,13 +1000,13 @@ body.show-notes .note{display:block}
           <circle r="5" fill="var(--lime)" stroke="var(--green)" stroke-width="1"><animateMotion dur="16s" begin="-10.66s" repeatCount="indefinite" path="M 360 80 A 190 190 0 0 1 360 460 A 190 190 0 0 1 360 80"/></circle>
         </g>
 
-        <path d="M 399.5 84.15 A 190 190 0 0 1 480.64 123.21" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
-        <path d="M 529.94 185.03 A 190 190 0 0 1 549.98 272.84" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
-        <path d="M 532.41 349.85 A 190 190 0 0 1 476.19 420.33" fill="none" stroke="var(--green)" stroke-width="3" marker-end="url(#agO2)"/>
-        <path d="M 404.92 454.61 A 190 190 0 0 1 315.08 454.61" fill="none" stroke="var(--teal-soft)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#agS2)"/>
-        <path d="M 243.81 420.33 A 190 190 0 0 1 187.59 349.85" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
-        <path d="M 170.02 272.84 A 190 190 0 0 1 190.06 185.03" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
-        <path d="M 239.36 123.21 A 190 190 0 0 1 320.5 84.15" fill="none" stroke="var(--teal)" stroke-width="4.5" marker-end="url(#agT2)"/>
+        <path d="M 431.18 93.84 A 190 190 0 0 1 442.44 98.82 A 190 190 0 0 1 453.38 104.53" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
+        <path d="M 542.11 215.82 A 190 190 0 0 1 545.24 227.72 A 190 190 0 0 1 547.57 239.72" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
+        <path d="M 515.85 378.68 A 190 190 0 0 1 508.55 388.46 A 190 190 0 0 1 500.52 397.89" fill="none" stroke="var(--green)" stroke-width="3.5" marker-mid="url(#arwG2)"/>
+        <path d="M 372.31 459.60 A 190 190 0 0 1 360 460 A 190 190 0 0 1 347.69 459.60" fill="none" stroke="var(--teal-soft)" stroke-width="2.5" stroke-dasharray="5 5" marker-mid="url(#arwS2)"/>
+        <path d="M 219.48 397.89 A 190 190 0 0 1 211.45 388.46 A 190 190 0 0 1 204.15 378.68" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
+        <path d="M 172.43 239.72 A 190 190 0 0 1 174.76 227.72 A 190 190 0 0 1 177.89 215.82" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
+        <path d="M 266.62 104.53 A 190 190 0 0 1 277.56 98.82 A 190 190 0 0 1 288.83 93.84" fill="none" stroke="var(--teal)" stroke-width="5" marker-mid="url(#arwT2)"/>
 
         <text x="456" y="78" text-anchor="middle" font-size="17" font-weight="800" fill="var(--green)">$</text>
         <text x="456" y="93" text-anchor="middle" class="v-sub">sale</text>
